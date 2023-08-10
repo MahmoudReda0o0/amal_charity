@@ -1,21 +1,17 @@
-import 'package:amal_charity/business_logic/api/get_all_families/families.dart';
+import 'package:amal_charity/data/models/families_model.dart';
 import 'package:amal_charity/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:provider/provider.dart';
-
-import '../../data/repositories/families_repo.dart';
-import '../../data/web_services/families_web_services.dart';
+import '../../business_logic/api/get_all_families/cubit/families_cubit.dart';
 import 'family_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
-    final provider =
-        FamiliesProvider(repo: FamiliesRepo(FamiliesWebServices()));
-    provider.getAllFamilies();
+    final cubit = FamiliesCubit.get(context);
+    cubit.getAllFamilies();
     return Scaffold(
       backgroundColor: HexColor("#F7F2EC"),
       appBar: AppBar(
@@ -25,25 +21,29 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.green,
         elevation: 0,
       ),
-      body: ChangeNotifierProvider<FamiliesProvider>(
-        create: (context) => provider,
-        child: ListView.separated(
-          itemBuilder: (context, index) {
-            return _buildListItem(index, context);
-          },
-          itemCount: 3,
-          separatorBuilder: (context, index) => Container(),
-        ),
+      body: BlocConsumer<FamiliesCubit, FamiliesState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return ListView.separated(
+            itemBuilder: (context, index) {
+              return _buildListItem(index, context, cubit.families[index]);
+            },
+            itemCount: cubit.families.length,
+            separatorBuilder: (context, index) => Container(),
+          );
+        },
       ),
     );
   }
 
-  Widget _buildListItem(int index, BuildContext context) {
+  Widget _buildListItem(int index, BuildContext context, FamilyModel family) {
     return InkWell(
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const FamilyScreen(),
+          builder: (context) => FamilyScreen(
+            family: family,
+          ),
         ),
       ),
       child: Container(
@@ -65,6 +65,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.14,
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               decoration: BoxDecoration(
                 color: Colors.green,
                 borderRadius: const BorderRadius.only(
@@ -76,9 +77,9 @@ class HomeScreen extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  S.of(context).family1,
+                  '${S.of(context).family}${index + 1}',
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -89,22 +90,26 @@ class HomeScreen extends StatelessWidget {
               width: 8,
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding:
+                  const EdgeInsetsDirectional.only(start: 8, top: 8, bottom: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     '${S.of(context).name} / ',
                     style: const TextStyle(
-                      fontSize: 13,
+                      fontSize: 12,
                       fontWeight: FontWeight.normal,
                       color: Colors.black,
                     ),
                   ),
                   Text(
                     '${S.of(context).address} / ',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      fontSize: 13,
+                      fontSize: 12,
                       fontWeight: FontWeight.normal,
                       color: Colors.black,
                     ),
@@ -112,7 +117,7 @@ class HomeScreen extends StatelessWidget {
                   Text(
                     '${S.of(context).phone} / ',
                     style: const TextStyle(
-                      fontSize: 13,
+                      fontSize: 12,
                       fontWeight: FontWeight.normal,
                       color: Colors.black,
                     ),
