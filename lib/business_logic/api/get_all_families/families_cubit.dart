@@ -19,15 +19,16 @@ class FamiliesCubit extends Cubit<FamiliesState> {
       emit(FamiliesGetFamiliesSuccess());
     });
   }
+
   List<FamilyDetailedModel> detailedFamilies = [];
   void getDetailedFamilies() {
     emit(Loading());
     repo.getFamiliesInDetails().then((value) {
       detailedFamilies = value;
-      
+      print('${detailedFamilies[0].husband}');
       emit(FamiliesGetDetailedFamiliesSuccess());
     }).catchError((error) {
-      emit(Error(error:error));
+      emit(Error(error: error));
     });
   }
 }

@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
       body: BlocConsumer<FamiliesCubit, FamiliesState>(
         listener: (context, state) {},
         builder: (context, state) {
-          return state is! Loading
+          return state is FamiliesGetDetailedFamiliesSuccess
               ? ListView.separated(
                   itemBuilder: (context, index) {
                     return _buildListItem(
@@ -103,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    '${S.of(context).name} / ',
+                    '${S.of(context).name} /${family.husband?.name} ',
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.normal,
