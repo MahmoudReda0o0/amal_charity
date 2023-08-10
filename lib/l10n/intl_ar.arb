@@ -11,5 +11,6 @@
     "job":"الوظيفة",
     "number_of_kids":"عدد الأطفال",
     "monthly_money":"المبلغ الشهرى",
-    "number_of_people_in_family":"عدد أفراد الأسرة"
+    "number_of_people_in_family":"عدد أفراد الأسرة",
+    "family_short_data":"بيانات مختصرة"
 }

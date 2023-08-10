@@ -1,4 +1,3 @@
-import 'package:amal_charity/data/models/families_model.dart';
 import 'package:amal_charity/data/models/family_detailed.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -8,9 +7,10 @@ import '../../generated/l10n.dart';
 // ignore: must_be_immutable
 class FamilyScreen extends StatelessWidget {
   FamilyDetailedModel family;
-
+  int index;
   FamilyScreen({
     required this.family,
+    required this.index,
     super.key,
   });
 
@@ -23,7 +23,7 @@ class FamilyScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           title: Text(
-            S.of(context).family,
+            '${S.of(context).family} ${index + 1}',
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -35,15 +35,16 @@ class FamilyScreen extends StatelessWidget {
           children: [
             _buildHusbandInfo(context),
             _buildWifeInfo(context),
-            _buildInfoWidget(
-                context, S.of(context).address, "this is the address"),
+            _buildInfoWidget(context, S.of(context).address,
+                '${family.familyInfo?.familyAdress ?? ' '} '),
             _buildInfoWidget(context, S.of(context).number_of_kids,
-                "this is the number of kids"),
+                '${family.children?.childrenNumber ?? ' '} '),
             _buildInfoWidget(context, S.of(context).monthly_money,
-                "this is the monthly money"),
-            _buildInfoWidget(context, S.of(context).phone, "this is the phone"),
+                '${family.familyInfo?.monthlyMoney ?? ' '} '),
+            _buildInfoWidget(context, S.of(context).phone,
+                '${family.husband?.teleNumber ?? ' '} '),
             _buildInfoWidget(context, S.of(context).number_of_people_in_family,
-                "this is the number of people_in_family"),
+                '${family.familyInfo?.familyNO ?? ' '} '),
           ],
         ),
         drawer: Drawer(
@@ -67,11 +68,12 @@ class FamilyScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('${S.of(context).husband_name} / '),
+          Text(
+              '${S.of(context).husband_name} / ${family.husband?.name ?? ' '} '),
           const SizedBox(
             height: 10,
           ),
-          Text('${S.of(context).job} / '),
+          Text('${S.of(context).job} / ${family.husband?.job ?? ' '}'),
         ],
       ),
     );
@@ -91,11 +93,11 @@ class FamilyScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('${S.of(context).wife_name} / '),
+          Text('${S.of(context).wife_name} / ${family.wife?.name ?? ' '}'),
           const SizedBox(
             height: 10,
           ),
-          Text('${S.of(context).job} / '),
+          Text('${S.of(context).job} / ${family.wife?.job ?? ' '}'),
         ],
       ),
     );
@@ -115,16 +117,55 @@ class FamilyScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('$key / '),
+          Text(
+            '$key /  $value',
+            maxLines: 1,
+            overflow: TextOverflow.clip,
+            style: const TextStyle(
+              fontWeight: FontWeight.normal,
+              color: Colors.black,
+            ),
+          ),
         ],
       ),
+    );
+  }
+
+  Widget _buildDrawerDesign(BuildContext context) {
+    return Column(
+      children: [
+        const SizedBox(
+          height: 20,
+        ),
+        Container(
+          height: 120,
+          width: 120,
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.green,
+                width: 3,
+              ),
+              color: Colors.white,
+              borderRadius: const BorderRadius.all(Radius.circular(500))),
+          child: Image.asset(
+            'assets/images/family_green.png',
+          ),
+        ),
+        Text(S.of(context).family),
+        _buildDrawerInfoWidget(
+          context,
+          'assets/images/family.jpg',
+          S.of(context).family_short_data,
+        ),
+      ],
     );
   }
 
   Widget _buildDrawerInfoWidget(context, String iconUrl, String text) {
     return InkWell(
       onTap: () {
-        //do your work here
+        Navigator.pop(context);
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -146,28 +187,6 @@ class FamilyScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildDrawerDesign(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 20,
-        ),
-        const CircleAvatar(
-          radius: 60,
-          backgroundImage: AssetImage(
-            'assets/images/family.jpg',
-          ),
-        ),
-        Text(S.of(context).family),
-        _buildDrawerInfoWidget(
-          context,
-          'assets/images/family.jpg',
-          'بيانات مختصرة',
-        ),
-      ],
     );
   }
 }

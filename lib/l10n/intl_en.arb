@@ -10,5 +10,6 @@
     "job":"Job",
     "number_of_kids":"Number of kids",
     "monthly_money":"Monthly salary",
-    "number_of_people_in_family":"number of people in family"
+    "number_of_people_in_family":"number of people in family",
+    "family_short_data":"Family short data"
 }

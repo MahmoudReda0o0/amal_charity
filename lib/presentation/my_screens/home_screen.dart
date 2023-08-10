@@ -50,6 +50,7 @@ class HomeScreen extends StatelessWidget {
         MaterialPageRoute(
           builder: (context) => FamilyScreen(
             family: family,
+            index: index,
           ),
         ),
       ),
@@ -109,7 +110,7 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '${S.of(context).name} /${family.husband?.name} ',
+                      '${S.of(context).name} /${family.husband?.name ?? " "}',
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.normal,
@@ -117,7 +118,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${S.of(context).address} / ${family.familyInfo?.familyAdress}',
+                      '${S.of(context).address} / ${family.familyInfo?.familyAdress ?? " "}',
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                       style: const TextStyle(
@@ -127,7 +128,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${S.of(context).phone} / ${family.husband?.teleNumber}',
+                      '${S.of(context).phone} / ${family.husband?.teleNumber ?? " "}',
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.normal,

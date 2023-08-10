@@ -169,6 +169,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Family short data`
+  String get family_short_data {
+    return Intl.message(
+      'Family short data',
+      name: 'family_short_data',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

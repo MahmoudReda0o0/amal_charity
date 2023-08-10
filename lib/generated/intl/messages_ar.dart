@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "address": MessageLookupByLibrary.simpleMessage("العنوان"),
         "families_list": MessageLookupByLibrary.simpleMessage("قائمة الأسر"),
         "family": MessageLookupByLibrary.simpleMessage("الأسرة "),
+        "family_short_data":
+            MessageLookupByLibrary.simpleMessage("بيانات مختصرة"),
         "husband_name": MessageLookupByLibrary.simpleMessage("إسم الزوج "),
         "job": MessageLookupByLibrary.simpleMessage("الوظيفة"),
         "monthly_money": MessageLookupByLibrary.simpleMessage("المبلغ الشهرى"),
