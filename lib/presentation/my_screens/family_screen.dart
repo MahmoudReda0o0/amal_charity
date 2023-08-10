@@ -1,10 +1,18 @@
+import 'package:amal_charity/data/models/families_model.dart';
+import 'package:amal_charity/data/models/family_detailed.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../../generated/l10n.dart';
 
+// ignore: must_be_immutable
 class FamilyScreen extends StatelessWidget {
-  const FamilyScreen({super.key});
+  FamilyDetailedModel family;
+
+  FamilyScreen({
+    required this.family,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +23,7 @@ class FamilyScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           title: Text(
-            S.of(context).family1,
+            S.of(context).family,
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -153,7 +161,7 @@ class FamilyScreen extends StatelessWidget {
             'assets/images/family.jpg',
           ),
         ),
-        Text(S.of(context).family1),
+        Text(S.of(context).family),
         _buildDrawerInfoWidget(
           context,
           'assets/images/family.jpg',

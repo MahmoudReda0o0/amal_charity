@@ -2,11 +2,19 @@ import 'package:amal_charity/generated/l10n.dart';
 import 'package:amal_charity/presentation/my_screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 
+import 'bloc_observer.dart';
+import 'business_logic/api/get_all_families/families_cubit.dart';
+import 'data/repositories/families_repo.dart';
+import 'data/web_services/families_web_services.dart';
+
 //this is the main of the project
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -34,7 +42,13 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Janna'),
-      home: const HomeScreen(),
+      home: BlocProvider<FamiliesCubit>(
+        create: (context) =>
+            FamiliesCubit(repo: FamiliesRepo(FamiliesWebServices()))
+              ..getAllFamilies()
+              ..getDetailedFamilies(),
+        child: const HomeScreen(),
+      ),
     );
   }
 }

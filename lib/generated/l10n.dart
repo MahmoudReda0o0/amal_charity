@@ -60,11 +60,11 @@ class S {
     );
   }
 
-  /// `Family1`
-  String get family1 {
+  /// `Family`
+  String get family {
     return Intl.message(
-      'Family1',
-      name: 'family1',
+      'Family',
+      name: 'family',
       desc: '',
       args: [],
     );

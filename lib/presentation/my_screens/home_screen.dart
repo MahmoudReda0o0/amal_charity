@@ -1,9 +1,10 @@
-import 'package:amal_charity/data/models/families_model.dart';
+import 'package:amal_charity/data/models/family_detailed.dart';
 import 'package:amal_charity/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
-import '../../business_logic/api/get_all_families/cubit/families_cubit.dart';
+
+import '../../business_logic/api/get_all_families/families_cubit.dart';
 import 'family_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,7 +12,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = FamiliesCubit.get(context);
-    cubit.getAllFamilies();
     return Scaffold(
       backgroundColor: HexColor("#F7F2EC"),
       appBar: AppBar(
@@ -24,19 +24,25 @@ class HomeScreen extends StatelessWidget {
       body: BlocConsumer<FamiliesCubit, FamiliesState>(
         listener: (context, state) {},
         builder: (context, state) {
-          return ListView.separated(
-            itemBuilder: (context, index) {
-              return _buildListItem(index, context, cubit.families[index]);
-            },
-            itemCount: cubit.families.length,
-            separatorBuilder: (context, index) => Container(),
-          );
+          return state is! Loading
+              ? ListView.separated(
+                  itemBuilder: (context, index) {
+                    return _buildListItem(
+                        index, context, cubit.detailedFamilies[index]);
+                  },
+                  itemCount: cubit.families.length,
+                  separatorBuilder: (context, index) => Container(),
+                )
+              : const Center(
+                  child: CircularProgressIndicator(),
+                );
         },
       ),
     );
   }
 
-  Widget _buildListItem(int index, BuildContext context, FamilyModel family) {
+  Widget _buildListItem(
+      int index, BuildContext context, FamilyDetailedModel family) {
     return InkWell(
       onTap: () => Navigator.push(
         context,
