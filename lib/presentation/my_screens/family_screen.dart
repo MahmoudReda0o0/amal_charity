@@ -1,7 +1,6 @@
 import 'package:amal_charity/data/models/family_detailed.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-
 import '../../generated/l10n.dart';
 
 // ignore: must_be_immutable
