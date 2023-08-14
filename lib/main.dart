@@ -1,4 +1,5 @@
 import 'package:amal_charity/generated/l10n.dart';
+import 'package:amal_charity/presentation/my_screens/SplashScreen/OpeningSplash.dart';
 import 'package:amal_charity/presentation/my_screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,6 +11,10 @@ import 'bloc_observer.dart';
 import 'business_logic/api/get_all_families/families_cubit.dart';
 import 'data/repositories/families_repo.dart';
 import 'data/web_services/families_web_services.dart';
+
+
+GlobalKey<NavigatorState> _navigationKey = GlobalKey<NavigatorState>();
+GlobalKey<NavigatorState> get navigationKey => _navigationKey;
 
 //this is the main of the project
 void main() {
@@ -47,7 +52,7 @@ class MyApp extends StatelessWidget {
             FamiliesCubit(repo: FamiliesRepo(FamiliesWebServices()))
               ..getAllFamilies()
               ..getDetailedFamilies(),
-        child: const HomeScreen(),
+        child: OpeningSplash(),
       ),
     );
   }
