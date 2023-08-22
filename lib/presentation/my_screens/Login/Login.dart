@@ -1,7 +1,10 @@
+import 'package:amal_charity/business_logic/Provider/FamilyData.dart';
 import 'package:amal_charity/constants/constantValues.dart';
+import 'package:amal_charity/data/models/families_model.dart';
 import 'package:amal_charity/presentation/my_screens/Widget/CustomTextInput.dart';
 import 'package:flutter/material.dart';
-
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import '../../../constants/my_colors.dart';
 
 class Login extends StatefulWidget {
@@ -43,14 +46,16 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: mediaH * 0.024,
               ),
-              keyboard==0 ?Container(
-                height: mediaH * 0.3,
-                width: mediaW * 0.85,
-                // color: Colors.green,
-                child: Image(
-                    image: AssetImage('assets/images/pic1.png'),
-                    fit: BoxFit.fill),
-              ):SizedBox(),
+              keyboard == 0
+                  ? Container(
+                      height: mediaH * 0.3,
+                      width: mediaW * 0.85,
+                      // color: Colors.green,
+                      child: Image(
+                          image: AssetImage('assets/images/pic1.png'),
+                          fit: BoxFit.fill),
+                    )
+                  : SizedBox(),
               SizedBox(
                 height: mediaH * 0.024,
               ),
@@ -143,20 +148,31 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(height: mediaH*0.05,),
+              SizedBox(
+                height: mediaH * 0.05,
+              ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: ()  {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('Open Family Screen'),
                     ),
                   );
+                  // await Provider.of<ProviderFamilyData>(context,listen: false)
+                  //     .dataApi
+                  //     .GetFamilyData();
+                  GoRouter.of(context).go('/FamilyPageForm');
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => FamilyProfile()));
                 },
                 child: Container(
                   height: mediaH * 0.07,
                   width: mediaW * 0.85,
                   child: Center(
-                    child: Text('تسجيل دخول',style: TextStyle(fontSize: mediaW*0.05),),
+                    child: Text(
+                      'تسجيل دخول',
+                      style: TextStyle(fontSize: mediaW * 0.05),
+                    ),
                   ),
                 ),
               ),

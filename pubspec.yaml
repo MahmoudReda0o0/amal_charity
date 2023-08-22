@@ -19,6 +19,7 @@ dependencies:
   http: ^0.13.6
   provider: ^6.0.5
   animated_splash_screen:
+  go_router:
 
 dev_dependencies:
   flutter_lints: ^2.0.0
