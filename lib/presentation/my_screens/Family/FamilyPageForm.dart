@@ -1,5 +1,4 @@
 import 'package:amal_charity/business_logic/Provider/AppProvider/ProviderAppData.dart';
-import 'package:amal_charity/business_logic/Provider/FamilyData.dart';
 import 'package:amal_charity/constants/my_colors.dart';
 import 'package:amal_charity/presentation/my_screens/Family/DrawerFamilyPage/ChildrenData.dart';
 import 'package:amal_charity/presentation/my_screens/Family/DrawerFamilyPage/DebtData.dart';
@@ -9,11 +8,8 @@ import 'package:amal_charity/presentation/my_screens/Family/DrawerFamilyPage/Inc
 import 'package:amal_charity/presentation/my_screens/Family/DrawerFamilyPage/ParentsData.dart';
 import 'package:amal_charity/presentation/my_screens/Family/DrawerFamilyPage/SchoolData.dart';
 import 'package:amal_charity/presentation/my_screens/Family/Widget/buildHeader.dart';
-import 'package:amal_charity/presentation/my_screens/Widget/CusContainerData.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../../main.dart';
 import 'DrawerFamilyPage/BrideData.dart';
 import 'DrawerFamilyPage/MedicalData.dart';
 import 'Widget/buildMenuItem.dart';
