@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class CustomDevider{
+class CustomDevider {
   Widget mineiDivider() {
-    return Divider(
+    return const Divider(
       color: Colors.black38,
       height: 30,
       thickness: 2,
@@ -10,8 +10,9 @@ class CustomDevider{
       indent: 50,
     );
   }
+
   Widget fullDivider() {
-    return Divider(
+    return const Divider(
       color: Colors.black,
       height: 30,
       thickness: 3,
@@ -19,5 +20,4 @@ class CustomDevider{
       indent: 10,
     );
   }
-
 }

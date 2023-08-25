@@ -1,8 +1,6 @@
 import 'package:amal_charity/constants/constantValues.dart';
-import 'package:amal_charity/constants/my_colors.dart';
 import 'package:amal_charity/presentation/my_screens/Widget/CusListTileNav.dart';
 import 'package:flutter/material.dart';
-
 
 class BuildMenuItems extends StatefulWidget {
   const BuildMenuItems({Key? key}) : super(key: key);
@@ -15,14 +13,17 @@ class _BuildMenuItemsState extends State<BuildMenuItems> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: List.generate(PublicData.familyObject.length, (index) {
-        return CusListTileNav(
-          itemIndex: index,
-          title: PublicData.familyObject[index],
-          routePage: PublicData.pageRoute[index],
-          leadingIcon: PublicData.DrawerIcon[index],
-        );
-      }),
+      children: List.generate(
+        PublicData.familyObject.length,
+        (index) {
+          return CusListTileNav(
+            itemIndex: index,
+            title: PublicData.familyObject[index],
+            routePage: PublicData.pageRoute[index],
+            leadingIcon: PublicData.DrawerIcon[index],
+          );
+        },
+      ),
       // children: [
       //   CusListTileNav(
       //     itemIndex: 0,

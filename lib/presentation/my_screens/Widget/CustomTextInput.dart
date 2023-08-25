@@ -7,13 +7,14 @@ class CustomTextInput {
     required TextEditingController textController,
     required String errorTitle,
     required String hintTitle,
-     TextInputType? keyboardType= TextInputType.text,
+    TextInputType? keyboardType = TextInputType.text,
     Widget? leftIcon,
     Widget? rightIcon,
     bool? passwordMod = false,
     required double sizeHeight,
     required double sizeWidth,
   }) {
+    // ignore: sized_box_for_whitespace
     return Container(
       height: sizeHeight,
       width: sizeWidth,
@@ -21,13 +22,14 @@ class CustomTextInput {
         controller: textController,
         textAlign: TextAlign.right,
         obscureText: passwordMod!,
-        style: TextStyle(color: Colors.black),
+        style: const TextStyle(color: Colors.black),
         keyboardType: keyboardType,
         validator: (value) {
-          if (value == null || value.length < 5)
+          if (value == null || value.length < 5) {
             return errorTitle;
-          else
+          } else {
             return null;
+          }
         },
         decoration: InputDecoration(
           filled: true,
@@ -35,11 +37,11 @@ class CustomTextInput {
           prefixIcon: leftIcon,
           suffixIcon: rightIcon,
           hintText: hintTitle,
-          hintStyle: TextStyle(color: Colors.black26, fontSize: 15),
-          errorStyle: TextStyle(fontSize: 10),
+          hintStyle: const TextStyle(color: Colors.black26, fontSize: 15),
+          errorStyle: const TextStyle(fontSize: 10),
           errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.red)),
+              borderSide: const BorderSide(color: Colors.red)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(color: PublicColor().one)),
@@ -82,9 +84,11 @@ class CustomTextInput {
             hintTitle: "اسم المستخدم",
             keyboardType: TextInputType.name,
           ),
-          SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           customTextField(
-            sizeHeight: 100,
+              sizeHeight: 100,
               sizeWidth: 100,
               passwordMod: showPassword,
               textController: conPassword,

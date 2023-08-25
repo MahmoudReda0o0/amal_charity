@@ -1,10 +1,11 @@
 import 'package:amal_charity/data/models/family_detailed.dart';
 import 'package:amal_charity/generated/l10n.dart';
+import 'package:amal_charity/presentation/my_screens/Family/FamilyPageForm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
-
 import '../../business_logic/api/get_all_families/families_cubit.dart';
+import '../../data/models/families_model.dart';
 import 'family_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,6 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = FamiliesCubit.get(context);
+    cubit.getDetailedFamilies();
     return Scaffold(
       backgroundColor: HexColor("#F7F2EC"),
       appBar: AppBar(
@@ -31,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                     return _buildListItem(
                         index, context, cubit.detailedFamilies[index]);
                   },
-                  itemCount: cubit.families.length,
+                  itemCount: cubit.detailedFamilies.length,
                   separatorBuilder: (context, index) => Container(),
                 )
               : const Center(
@@ -48,8 +50,8 @@ class HomeScreen extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => FamilyScreen(
-            family: family,
+          builder: (context) => FamilyPageForm(
+            familyId: family.familyInfo!.sId ?? "",
             index: index,
           ),
         ),

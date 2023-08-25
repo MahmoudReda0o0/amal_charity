@@ -3,9 +3,13 @@ import 'package:amal_charity/constants/constantValues.dart';
 import 'package:amal_charity/data/models/families_model.dart';
 import 'package:amal_charity/presentation/my_screens/Widget/CustomTextInput.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import '../../../business_logic/api/get_all_families/families_cubit.dart';
 import '../../../constants/my_colors.dart';
+import '../../../data/repositories/families_repo.dart';
+import '../../../data/web_services/families_web_services.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -51,11 +55,11 @@ class _LoginState extends State<Login> {
                       height: mediaH * 0.3,
                       width: mediaW * 0.85,
                       // color: Colors.green,
-                      child: Image(
+                      child: const Image(
                           image: AssetImage('assets/images/pic1.png'),
                           fit: BoxFit.fill),
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
               SizedBox(
                 height: mediaH * 0.024,
               ),
@@ -152,18 +156,14 @@ class _LoginState extends State<Login> {
                 height: mediaH * 0.05,
               ),
               ElevatedButton(
-                onPressed: ()  {
+                onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Open Family Screen'),
                     ),
                   );
-                  // await Provider.of<ProviderFamilyData>(context,listen: false)
-                  //     .dataApi
-                  //     .GetFamilyData();
-                  GoRouter.of(context).go('/FamilyPageForm');
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => FamilyProfile()));
+                  // GoRouter.of(context).go('/FamilyPageForm');
+                  GoRouter.of(context).go('/HomeScreen');
                 },
                 child: Container(
                   height: mediaH * 0.07,

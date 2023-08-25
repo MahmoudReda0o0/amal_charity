@@ -42,7 +42,7 @@ class FamiliesWebServices {
 
       if (response.statusCode == 200) {
         final List<dynamic> families = jsonDecode(response.body);
-        print(families);
+        print("This is the families ${families[0]}");
         return families;
       } else {
         print('#### Error: ${response.body}');
