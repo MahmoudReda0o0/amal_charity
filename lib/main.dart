@@ -55,13 +55,6 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Janna'),
-      // home: BlocProvider<FamiliesCubit>(
-      //   create: (context) =>
-      //   FamiliesCubit(repo: FamiliesRepo(FamiliesWebServices()))
-      //     ..getAllFamilies()
-      //     ..getDetailedFamilies(),
-      //   child: OpeningSplash(),
-      // ),
     ),
     );
   }

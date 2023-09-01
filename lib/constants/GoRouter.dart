@@ -7,7 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../presentation/my_screens/Family/FamilyPageForm.dart';
 
-final GoRouter router = GoRouter(routes: [
+final GoRouter router = GoRouter(
+  routes: [
   GoRoute(path: '/', builder: (context, state) => const Login()),
   GoRoute(
     path: '/FamilyPageForm',

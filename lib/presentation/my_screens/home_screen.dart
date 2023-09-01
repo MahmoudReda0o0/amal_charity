@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../business_logic/api/get_all_families/families_cubit.dart';
-import '../../data/models/families_model.dart';
-import 'family_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

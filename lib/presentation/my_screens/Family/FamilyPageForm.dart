@@ -14,11 +14,15 @@ import 'DrawerFamilyPage/BrideData.dart';
 import 'DrawerFamilyPage/MedicalData.dart';
 import '../../Widget/buildMenuItem.dart';
 
+// ignore: must_be_immutable
 class FamilyPageForm extends StatefulWidget {
   String familyId;
   int index;
-  FamilyPageForm({required this.familyId, required this.index, Key? key})
-      : super(key: key);
+  FamilyPageForm({
+    required this.familyId,
+    required this.index,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<FamilyPageForm> createState() => _FamilyPageFormState();
