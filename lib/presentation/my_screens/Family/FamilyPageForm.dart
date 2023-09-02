@@ -31,6 +31,7 @@ class FamilyPageForm extends StatefulWidget {
 class _FamilyPageFormState extends State<FamilyPageForm> {
   @override
   Widget build(BuildContext context) {
+    print('The received family id is ${widget.familyId}');
     double mediaH = MediaQuery.of(context).size.height;
     double mediaW = MediaQuery.of(context).size.width;
     return SafeArea(
