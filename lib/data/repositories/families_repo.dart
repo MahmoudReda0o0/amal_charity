@@ -8,6 +8,7 @@ class FamiliesRepo {
 
   Future<List<FamilyModel>> getFamilies() async {
     final families = await webServices.getFamilies();
+
     return families.map((fammily) => FamilyModel.fromJson(fammily)).toList();
   }
 
@@ -16,5 +17,12 @@ class FamiliesRepo {
     return families
         .map((fammily) => FamilyDetailedModel.fromJson(fammily))
         .toList();
+  }
+
+  Future<FamilyDetailedModel> getFamiliyById(
+    String familyId,
+  ) async {
+    final family = await webServices.getFamilyById(familyId);
+    return FamilyDetailedModel.fromJson(family[0]);
   }
 }
