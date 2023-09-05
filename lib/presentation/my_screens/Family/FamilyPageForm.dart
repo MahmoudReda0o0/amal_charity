@@ -55,7 +55,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                     elevation: 0.0,
                     title: Text(
                       _.familyAppBar,
-                      style: const TextStyle(fontSize: 25),
+                      style:  TextStyle(fontSize: 25),
                     ),
                     centerTitle: true,
                     actions: [
@@ -65,7 +65,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
-                                  title: const Text(
+                                  title:  Text(
                                     "You aren't allow to open Edit Page",
                                     style: TextStyle(fontSize: 27),
                                     textAlign: TextAlign.center,
@@ -78,7 +78,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                                       textAlign: TextAlign.left),
                                   icon: Transform.rotate(
                                     angle: 2.4,
-                                    child: const Icon(
+                                    child:  Icon(
                                       Icons.add_circle,
                                       size: 50,
                                       color: Colors.red,
@@ -93,7 +93,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                                         // Provider.of<ProviderFamilyData>(context,listen: false).GetFamilyData();
                                       },
                                       child: Container(
-                                        child: const Text('Family Api '),
+                                        child:  Text('Family Api '),
                                       ),
                                     ),
                                     TextButton(
@@ -101,7 +101,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                                         Navigator.pop(context);
                                       },
                                       child: Container(
-                                        child: const Text('Buy Now'),
+                                        child:  Text('Buy Now'),
                                       ),
                                     ),
                                     TextButton(
@@ -109,7 +109,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                                         Navigator.pop(context);
                                       },
                                       child: Container(
-                                        child: const Text(
+                                        child:  Text(
                                           'Buy Later',
                                           style: TextStyle(color: Colors.red),
                                         ),
@@ -120,10 +120,10 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                               },
                             );
                           },
-                          icon: const Icon(Icons.edit))
+                          icon:  Icon(Icons.edit))
                     ],
                   ),
-                  drawer: const Drawer(
+                  drawer:  Drawer(
                     child: SingleChildScrollView(
                       child: Column(
                         children: [

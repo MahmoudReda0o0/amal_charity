@@ -1,11 +1,14 @@
 import 'package:amal_charity/business_logic/Provider/ApiProvider/FamilyData.dart';
 import 'package:amal_charity/constants/constantValues.dart';
 import 'package:amal_charity/data/models/families_model.dart';
+import 'package:amal_charity/presentation/my_screens/Widget/CusLaunchUrl.dart';
 import 'package:amal_charity/presentation/my_screens/Widget/CustomTextInput.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../business_logic/api/get_all_families/families_cubit.dart';
 import '../../../constants/my_colors.dart';
 import '../../../data/repositories/families_repo.dart';
@@ -25,6 +28,7 @@ class _LoginState extends State<Login> {
   bool rememberMe = false;
   @override
   Widget build(BuildContext context) {
+    final driveUrl = Uri.parse('https://drive.google.com/drive/folders/1r0st4ARi0or5yquSklVJLwm-i0loKO-P?usp=sharing');
     double mediaH = MediaQuery.of(context).size.height;
     double mediaW = MediaQuery.of(context).size.width;
     double keyboard = MediaQuery.of(context).viewInsets.bottom;
@@ -156,15 +160,24 @@ class _LoginState extends State<Login> {
                 height: mediaH * 0.05,
               ),
               ElevatedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Open Family Screen'),
-                    ),
-                  );
-                  // GoRouter.of(context).go('/FamilyPageForm');
-                  GoRouter.of(context).go('/HomeScreen');
+                onPressed: () async {
+                 // CustomLaunchUrl().Launch('https://pub.dev/packages/url_launcher/example');
+                  print('1');
+                if(await canLaunchUrl(driveUrl)){
+                  print('2');
+                  await launchUrl(driveUrl);
+                  print('3');
+                }
                 },
+                // onPressed: () {
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //     const SnackBar(
+                //       content: Text('Open Family Screen'),
+                //     ),
+                //   );
+                //   // GoRouter.of(context).go('/FamilyPageForm');
+                //   GoRouter.of(context).go('/HomeScreen');
+                // },
                 child: Container(
                   height: mediaH * 0.07,
                   width: mediaW * 0.85,
