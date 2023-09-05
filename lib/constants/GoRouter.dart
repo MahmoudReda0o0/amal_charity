@@ -7,19 +7,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../presentation/my_screens/Family/FamilyPageForm.dart';
 
-final GoRouter router = GoRouter(
-  routes: [
+final GoRouter router = GoRouter(routes: [
   GoRoute(path: '/', builder: (context, state) => const Login()),
-  GoRoute(
-    path: '/FamilyPageForm',
-    builder: (context, state) => FamilyPageForm(familyId: "", index: 0),
-  ),
+  // GoRoute(
+  //   path: '/FamilyPageForm',
+  //   builder: (context, state) => FamilyPageForm(familyId: "", index: 0),
+  // ),
   GoRoute(
     path: '/HomeScreen',
     builder: (context, state) => BlocProvider<FamiliesCubit>(
       create: (context) =>
           FamiliesCubit(repo: FamiliesRepo(FamiliesWebServices())),
       child: const HomeScreen(),
+    ),
+  ),
+  GoRoute(
+    path: '/FamilyPageForm',
+    builder: (context, state) => BlocProvider<FamiliesCubit>(
+      create: (context) =>
+          FamiliesCubit(repo: FamiliesRepo(FamiliesWebServices())),
+      child: FamilyPageForm(familyId: "", index: 0),
     ),
   ),
 

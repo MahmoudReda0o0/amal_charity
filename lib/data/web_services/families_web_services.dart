@@ -53,4 +53,20 @@ class FamiliesWebServices {
       return [];
     }
   }
+
+  Future<dynamic> getFamilyById(
+    String familyId,
+  ) async {
+    print('get family data API');
+
+    final uri = Uri.parse('https://alamalcharity.onrender.com/cases/$familyId');
+    final response = await http.get(uri);
+    if (response.statusCode == 200) {
+      dynamic result = jsonDecode(response.body);
+      print(result);
+      return result;
+    } else {
+      print('family response : ${response.body}');
+    }
+  }
 }
