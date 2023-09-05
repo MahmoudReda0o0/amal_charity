@@ -1,3 +1,4 @@
+import 'package:amal_charity/presentation/my_screens/Widget/CustomPostPage.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -32,6 +33,9 @@ class CusContainerData extends StatelessWidget {
             //     fit: BoxFit.scaleDown,
             //     child: Text(title,style: TextStyle(fontSize: 20),overflow: TextOverflow.ellipsis,),
             // ),
+            trailing: IconButton(onPressed: (){
+              showDialog(context: context, builder: (context)=>CustomPostPage(Data: title,));
+            },icon: Icon(Icons.settings),),
             title: Text(
               title,
               style: const TextStyle(fontSize: 18),

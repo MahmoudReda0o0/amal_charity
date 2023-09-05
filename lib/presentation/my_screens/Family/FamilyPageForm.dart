@@ -1,3 +1,4 @@
+import 'package:amal_charity/business_logic/Provider/ApiProvider/FamilyData.dart';
 import 'package:amal_charity/business_logic/Provider/AppProvider/ProviderAppData.dart';
 import 'package:amal_charity/constants/my_colors.dart';
 import 'package:amal_charity/presentation/my_screens/Family/DrawerFamilyPage/ChildrenData.dart';
@@ -76,6 +77,14 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                           actions: [
                             TextButton(
                               onPressed: () {
+                                Provider.of<ProviderFamilyData>(context,listen: false).GetFamilyData();
+                              },
+                              child: Container(
+                                child: const Text('Family Api '),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
                                 Navigator.pop(context);
                               },
                               child: Container(
@@ -101,7 +110,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                   icon: const Icon(Icons.edit))
             ],
           ),
-          drawer: const Drawer(
+          drawer:  Drawer(
             child: SingleChildScrollView(
               child: Column(
                 children: [

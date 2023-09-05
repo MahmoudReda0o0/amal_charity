@@ -15,7 +15,7 @@ class FamilyDataApi {
    FamilyDataResult dataResult = FamilyDataResult();
    print('get family data API');
    try{
-     final _uri = Uri.parse('https://alamalcharity.onrender.com/cases/');
+     final _uri = Uri.parse('https://alamalcharity.onrender.com/cases/64cdec0b21c066c1eee767a2');
      final response = await http.get(_uri);
      if(response.statusCode==200){
        dataResult.hasError=false;
