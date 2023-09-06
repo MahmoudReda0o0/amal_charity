@@ -12,8 +12,10 @@ class Error extends FamiliesState {
   });
 }
 
-class FamiliesGetFamiliesSuccess extends FamiliesState {}
-
 class Loading extends FamiliesState {}
 
-class FamiliesGetDetailedFamiliesSuccess extends FamiliesState {}
+class GetFamiliesSuccessState extends FamiliesState {}
+
+class GetFamilyByIdSuccessState extends FamiliesState {}
+
+class GetDetailedFamiliesSuccess extends FamiliesState {}

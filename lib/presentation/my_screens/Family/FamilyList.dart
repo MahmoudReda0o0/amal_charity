@@ -24,7 +24,7 @@ class FamilyList extends StatelessWidget {
       body: BlocConsumer<FamiliesCubit, FamiliesState>(
         listener: (context, state) {},
         builder: (context, state) {
-          return state is FamiliesGetDetailedFamiliesSuccess
+          return state is GetDetailedFamiliesSuccess
               ? ListView.separated(
                   shrinkWrap: true,
                   itemBuilder: (context, index) {

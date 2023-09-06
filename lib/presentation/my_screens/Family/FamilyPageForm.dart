@@ -1,5 +1,6 @@
 import 'package:amal_charity/business_logic/Provider/AppProvider/ProviderAppData.dart';
 import 'package:amal_charity/constants/my_colors.dart';
+import 'package:amal_charity/data/models/family_detailed.dart';
 import 'package:amal_charity/presentation/my_screens/Family/DrawerFamilyPage/ChildrenData.dart';
 import 'package:amal_charity/presentation/my_screens/Family/DrawerFamilyPage/DebtData.dart';
 import 'package:amal_charity/presentation/my_screens/Family/DrawerFamilyPage/FamilyProfile.dart';
@@ -33,20 +34,25 @@ class FamilyPageForm extends StatefulWidget {
 }
 
 class _FamilyPageFormState extends State<FamilyPageForm> {
+  FamilyDetailedModel? family;
+
   @override
   Widget build(BuildContext context) {
-    print('The received family id is ${widget.familyId}');
     double mediaH = MediaQuery.of(context).size.height;
     double mediaW = MediaQuery.of(context).size.width;
     return BlocProvider<FamiliesCubit>(
       create: (context) =>
-          FamiliesCubit(repo: FamiliesRepo(FamiliesWebServices())),
+          FamiliesCubit(repo: FamiliesRepo(FamiliesWebServices()))
+            ..getFamilyById(widget.familyId, context),
       child: SafeArea(
         child: Consumer<ProviderAppData>(builder: (context, _, child) {
           return BlocConsumer<FamiliesCubit, FamiliesState>(
               listener: (context, state) {},
               builder: (context, state) {
                 var cubit = FamiliesCubit.get(context);
+
+                ///This is the family ya hoda
+                family = cubit.family;
                 return Scaffold(
                   backgroundColor: PublicColor().one,
                   appBar: AppBar(
@@ -55,7 +61,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                     elevation: 0.0,
                     title: Text(
                       _.familyAppBar,
-                      style:  TextStyle(fontSize: 25),
+                      style: const TextStyle(fontSize: 25),
                     ),
                     centerTitle: true,
                     actions: [
@@ -65,7 +71,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
-                                  title:  Text(
+                                  title: const Text(
                                     "You aren't allow to open Edit Page",
                                     style: TextStyle(fontSize: 27),
                                     textAlign: TextAlign.center,
@@ -78,7 +84,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                                       textAlign: TextAlign.left),
                                   icon: Transform.rotate(
                                     angle: 2.4,
-                                    child:  Icon(
+                                    child: const Icon(
                                       Icons.add_circle,
                                       size: 50,
                                       color: Colors.red,
@@ -89,11 +95,10 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                                       onPressed: () {
                                         cubit.getFamilyById(
                                             widget.familyId, context);
-
                                         // Provider.of<ProviderFamilyData>(context,listen: false).GetFamilyData();
                                       },
                                       child: Container(
-                                        child:  Text('Family Api '),
+                                        child: const Text('Family Api '),
                                       ),
                                     ),
                                     TextButton(
@@ -101,7 +106,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                                         Navigator.pop(context);
                                       },
                                       child: Container(
-                                        child:  Text('Buy Now'),
+                                        child: const Text('Buy Now'),
                                       ),
                                     ),
                                     TextButton(
@@ -109,7 +114,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                                         Navigator.pop(context);
                                       },
                                       child: Container(
-                                        child:  Text(
+                                        child: const Text(
                                           'Buy Later',
                                           style: TextStyle(color: Colors.red),
                                         ),
@@ -120,10 +125,10 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                               },
                             );
                           },
-                          icon:  Icon(Icons.edit))
+                          icon: const Icon(Icons.edit))
                     ],
                   ),
-                  drawer:  Drawer(
+                  drawer: const Drawer(
                     child: SingleChildScrollView(
                       child: Column(
                         children: [

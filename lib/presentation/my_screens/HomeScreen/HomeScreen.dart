@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
+                SizedBox(
                   height: mediaH * 0.13,
                   width: mediaW,
                   //color: Colors.amber,
@@ -52,72 +52,80 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: mediaW,
                   decoration: BoxDecoration(
                     color: PublicColor().one,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(40),
                         topRight: Radius.circular(40)),
                   ),
-                  child: Column(
-                    //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: mediaH * 0.02,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ShowAllWords()));
-                        },
-                        child: Container(
-                          width: mediaW * 0.9,
-                          height: mediaH * 0.27,
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(40)),
-                          child: CusCarouselSlider(),
-                        ),
-                      ),
-                      SizedBox(height: mediaH * 0.02),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 16),
+                      child: Column(
+                        //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          CusHomeCard(
-                              imageurl:
-                                  'assets/images/homescreen/familyicon.png',
-                              fun: () {
-                                GoRouter.of(context).go('/FamilyList');
-                              }),
-                          SizedBox(width: mediaW * 0.1),
-                          CusHomeCard(
-                              imageurl: 'assets/images/homescreen/bookicon.png',
-                              fun: () {
-                                CustomLaunchUrl().Launch();
-                              }),
+                          SizedBox(
+                            height: mediaH * 0.02,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ShowAllWords()));
+                            },
+                            child: Container(
+                              width: mediaW * 0.9,
+                              height: mediaH * 0.27,
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(40)),
+                              child: CusCarouselSlider(),
+                            ),
+                          ),
+                          SizedBox(height: mediaH * 0.02),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CusHomeCard(
+                                  imageurl:
+                                      'assets/images/homescreen/familyicon.png',
+                                  fun: () {
+                                    GoRouter.of(context).go('/FamilyList');
+                                  }),
+                              SizedBox(width: mediaW * 0.1),
+                              CusHomeCard(
+                                  imageurl:
+                                      'assets/images/homescreen/bookicon.png',
+                                  fun: () {
+                                    CustomLaunchUrl().Launch();
+                                  }),
+                            ],
+                          ),
+                          SizedBox(height: mediaH * 0.02),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CusHomeCard(
+                                  imageurl:
+                                      'assets/images/homescreen/familyicon.png',
+                                  fun: () {
+                                    print('open family screen');
+                                  }),
+                              SizedBox(width: mediaW * 0.1),
+                              CusHomeCard(
+                                  imageurl:
+                                      'assets/images/homescreen/familyicon.png',
+                                  fun: () {
+                                    print('open family screen');
+                                  }),
+                            ],
+                          ),
                         ],
                       ),
-                      SizedBox(height: mediaH * 0.02),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CusHomeCard(
-                              imageurl:
-                                  'assets/images/homescreen/familyicon.png',
-                              fun: () {
-                                print('open family screen');
-                              }),
-                          SizedBox(width: mediaW * 0.1),
-                          CusHomeCard(
-                              imageurl:
-                                  'assets/images/homescreen/familyicon.png',
-                              fun: () {
-                                print('open family screen');
-                              }),
-                        ],
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ],
@@ -127,16 +135,16 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-  Widget CusCarouselSlider (){
+
+  Widget CusCarouselSlider() {
     return CarouselSlider(
       carouselController: carouselController,
       items: List.generate(
         PublicData.wiseWords.length,
-            (index) => Center(
+        (index) => Center(
           child: Text(
             '{ ${PublicData.wiseWords[index]} }',
-            style: TextStyle(
-                fontSize: 23, color: Colors.green),
+            style: const TextStyle(fontSize: 23, color: Colors.green),
             textAlign: TextAlign.center,
           ),
         ),
@@ -145,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
         viewportFraction: 1,
         autoPlay: true,
         enlargeCenterPage: true,
-        autoPlayInterval: Duration(seconds: 8),
+        autoPlayInterval: const Duration(seconds: 8),
         //autoPlayAnimationDuration: Duration(seconds: 5),
       ),
     );

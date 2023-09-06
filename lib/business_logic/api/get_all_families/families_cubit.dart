@@ -21,18 +21,17 @@ class FamiliesCubit extends Cubit<FamiliesState> {
   void getFamilyById(String familyId, BuildContext context) {
     print("lets getFamilyById");
     emit(Loading());
-    repo
-        .getFamiliyById(
-      familyId,
-    )
-        .then(
+    repo.getFamiliyById(familyId).then(
       (FamilyDetailedModel value) {
         family = value;
         Provider.of<ProviderFamilyData>(context, listen: false).family = family;
         print("the retrieved husband age is ${family!.husband!.age}");
-        emit(FamiliesGetFamiliesSuccess());
+        emit(GetFamilyByIdSuccessState());
       },
-    );
+    ).catchError((error) {
+      print(error.toString());
+      emit(Error(error: error.toString()));
+    });
   }
 
   void getAllFamilies() {
@@ -40,7 +39,10 @@ class FamiliesCubit extends Cubit<FamiliesState> {
     emit(Loading());
     repo.getFamilies().then((value) {
       families = value;
-      emit(FamiliesGetFamiliesSuccess());
+      emit(GetFamiliesSuccessState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(Error(error: error.toString()));
     });
   }
 
@@ -50,7 +52,7 @@ class FamiliesCubit extends Cubit<FamiliesState> {
     repo.getFamiliesInDetails().then((value) {
       detailedFamilies = value;
       print('${detailedFamilies[0].husband}');
-      emit(FamiliesGetDetailedFamiliesSuccess());
+      emit(GetDetailedFamiliesSuccess());
     }).catchError((error) {
       emit(Error(error: error));
     });
