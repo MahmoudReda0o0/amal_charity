@@ -1,24 +1,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.amal_charity">
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
 
-    <!-- Provide required visibility configuration for API level 30 and above -->
     <queries>
-        <!-- If your app checks for SMS support -->
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <data android:scheme="https" />
-        </intent>
-        <!-- If your app checks for call support -->
+        <!-- to opens https URLs -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="https" />
         </intent>
     </queries>
+
    <application
         android:label="amal_charity"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
-        android:usesCleartextTrafic="true">
+        android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
             android:exported="true"

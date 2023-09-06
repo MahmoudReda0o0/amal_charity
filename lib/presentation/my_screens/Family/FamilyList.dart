@@ -4,10 +4,10 @@ import 'package:amal_charity/presentation/my_screens/Family/FamilyPageForm.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
-import '../../business_logic/api/get_all_families/families_cubit.dart';
+import '../../../business_logic/api/get_all_families/families_cubit.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class FamilyList extends StatelessWidget {
+  const FamilyList({super.key});
   @override
   Widget build(BuildContext context) {
     final cubit = FamiliesCubit.get(context);

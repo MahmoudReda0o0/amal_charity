@@ -1,7 +1,6 @@
 import 'package:amal_charity/business_logic/Provider/ApiProvider/FamilyData.dart';
 import 'package:amal_charity/generated/l10n.dart';
 import 'package:amal_charity/presentation/my_screens/SplashScreen/OpeningSplash.dart';
-import 'package:amal_charity/presentation/my_screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,6 +43,7 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider<ProviderAppData>(create: (context)=>ProviderAppData()),
     ],
     child: MaterialApp.router(
+      // navigatorKey: navigationKey,
       routerConfig: router,
       debugShowCheckedModeBanner: false,
       locale: const Locale('ar'),
