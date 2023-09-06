@@ -17,7 +17,7 @@ class CusListTileNav extends StatelessWidget {
         return ListTile(
           onTap: (){
             _.SelectDrawerItem(selectedInsex: itemIndex);
-           GoRouter.of(context).go('/FamilyPageForm');
+           Navigator.pop(context);
           },
           title: Text('$title'),
           leading:Icon(leadingIcon),

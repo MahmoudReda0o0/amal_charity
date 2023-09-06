@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../models/family_detailed.dart';
+import '../../models/family_detailed.dart';
 
 class FamilyDataResult {
   FamilyDetailedModel? DataModel;

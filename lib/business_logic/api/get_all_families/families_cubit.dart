@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../../data/models/families_model.dart';
 import '../../../../data/repositories/families_repo.dart';
 import '../../../data/models/family_detailed.dart';
-import '../../../data/web_services/FamilyDataApi.dart';
+import '../../../data/ApiRequest/Get/FamilyDataApi.dart';
 part 'families_state.dart';
 
 class FamiliesCubit extends Cubit<FamiliesState> {

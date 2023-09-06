@@ -1,5 +1,5 @@
 import 'package:amal_charity/data/models/family_detailed.dart';
-import 'package:amal_charity/data/web_services/FamilyDataApi.dart';
+import 'package:amal_charity/data/ApiRequest/Get/FamilyDataApi.dart';
 import 'package:flutter/material.dart';
 
 class ProviderFamilyData extends ChangeNotifier {

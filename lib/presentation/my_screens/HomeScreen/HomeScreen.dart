@@ -1,6 +1,8 @@
 import 'package:amal_charity/constants/my_colors.dart';
+import 'package:amal_charity/presentation/my_screens/HomeScreen/ShowAllWords.dart';
 import 'package:amal_charity/presentation/my_screens/Widget/CusHomeCard.dart';
 import 'package:amal_charity/presentation/my_screens/Widget/CusLaunchUrl.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  CarouselController carouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
     double mediaH = MediaQuery.of(context).size.height;
@@ -60,18 +63,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(
                         height: mediaH * 0.02,
                       ),
-                      Container(
-                        width: mediaW * 0.9,
-                        height: mediaH * 0.27,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(40)),
-                        child: Center(
-                          child: Text(
-                              'ما نقصت صدقة من مال، وما زاد الله عبداً بعفو إلا عزًّا، وما تواضع أحد لله إلا رفعه الله',
-                              style:
-                                  TextStyle(fontSize: 25, color: Colors.green,),
-                              textAlign: TextAlign.center,overflow: TextOverflow.clip),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ShowAllWords()));
+                        },
+                        child: Container(
+                          width: mediaW * 0.9,
+                          height: mediaH * 0.27,
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(40)),
+                          child: CusCarouselSlider(),
                         ),
                       ),
                       SizedBox(height: mediaH * 0.02),
@@ -118,6 +124,29 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+  Widget CusCarouselSlider (){
+    return CarouselSlider(
+      carouselController: carouselController,
+      items: List.generate(
+        PublicData.wiseWords.length,
+            (index) => Center(
+          child: Text(
+            '{ ${PublicData.wiseWords[index]} }',
+            style: TextStyle(
+                fontSize: 23, color: Colors.green),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+      options: CarouselOptions(
+        viewportFraction: 1,
+        autoPlay: true,
+        enlargeCenterPage: true,
+        autoPlayInterval: Duration(seconds: 8),
+        //autoPlayAnimationDuration: Duration(seconds: 5),
       ),
     );
   }
