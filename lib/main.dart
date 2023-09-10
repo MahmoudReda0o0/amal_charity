@@ -1,4 +1,5 @@
 import 'package:amal_charity/business_logic/Provider/ApiProvider/FamilyData.dart';
+import 'package:amal_charity/business_logic/Provider/AppProvider/ProviderUserProfile.dart';
 import 'package:amal_charity/generated/l10n.dart';
 import 'package:amal_charity/presentation/my_screens/SplashScreen/OpeningSplash.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(providers: [
       ChangeNotifierProvider<ProviderFamilyData>(create: (context)=>ProviderFamilyData()),
       ChangeNotifierProvider<ProviderAppData>(create: (context)=>ProviderAppData()),
+      ChangeNotifierProvider<ProviderUserProfile>(create: (context)=>ProviderUserProfile()),
     ],
     child: MaterialApp.router(
       // navigatorKey: navigationKey,

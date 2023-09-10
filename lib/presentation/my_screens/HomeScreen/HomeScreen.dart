@@ -1,5 +1,6 @@
 import 'package:amal_charity/constants/my_colors.dart';
 import 'package:amal_charity/presentation/my_screens/HomeScreen/ShowAllWords.dart';
+import 'package:amal_charity/presentation/my_screens/UserProfile/UserProfile.dart';
 import 'package:amal_charity/presentation/my_screens/Widget/CusHomeCard.dart';
 import 'package:amal_charity/presentation/my_screens/Widget/CusLaunchUrl.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -112,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   imageurl:
                                       'assets/images/homescreen/familyicon.png',
                                   fun: () {
-                                    print('open family screen');
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>UserProfile()));
                                   }),
                               SizedBox(width: mediaW * 0.1),
                               CusHomeCard(
