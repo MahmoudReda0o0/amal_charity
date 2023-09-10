@@ -1,5 +1,7 @@
+import 'package:amal_charity/business_logic/Provider/ApiProvider/FamilyData.dart';
 import 'package:amal_charity/presentation/my_screens/Widget/CustomDivider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../Widget/CusContainerData.dart';
 
@@ -17,19 +19,24 @@ class _HouseDataState extends State<HouseData> {
   Widget build(BuildContext context) {
     double mediaH = MediaQuery.of(context).size.height;
     double mediaW = MediaQuery.of(context).size.width;
-    return ListView(
-      children: [
-        CustomHouseDropButtom(),
-        CusContainerData(leading: 'ايجار الشهر : ', title: " int "),
-        CusContainerData(leading: 'عدد الغرف : ', title: 'int'),
-        CustomDevider().fullDivider(),
-        Center(child: Text('البطاطين ',style: TextStyle(color: Colors.green,fontSize: 30),),),
-        CusContainerData(leading: 'مع الاسره : ', title: " 1 "),
-        CusContainerData(leading: 'العدد المطلوب : ', title: " 4 "),
-        CusContainerData(leading: 'العدد اللي خارج : ', title: " 2 "),
+    return Consumer<ProviderFamilyData>(
+      builder: (context,_,child) {
+        var _house = _.family!.houseInfo!;
+        return ListView(
+          children: [
+            CustomHouseDropButtom(),
+            CusContainerData(leading: 'ايجار الشهر : ', title: " ${_house.houseType} "),
+            CusContainerData(leading: 'عدد الغرف : ', title: '${_house.roomsNumber}'),
+            CustomDevider().fullDivider(),
+            Center(child: Text('البطاطين ',style: TextStyle(color: Colors.green,fontSize: 30),),),
+            CusContainerData(leading: 'مع الاسره : ', title: " ${_house.blankets!.familyHave!} "),
+            CusContainerData(leading: 'العدد المطلوب : ', title: " ${_house.blankets!.familyNeed!} "),
+            CusContainerData(leading: 'العدد اللي خارج : ', title: " ${_house.blankets!.familyTake!} "),
 
 
-      ],
+          ],
+        );
+      }
     );
   }
 

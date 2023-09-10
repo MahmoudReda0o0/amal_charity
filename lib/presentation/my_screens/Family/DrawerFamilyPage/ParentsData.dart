@@ -1,3 +1,4 @@
+import 'package:amal_charity/business_logic/Provider/ApiProvider/FamilyData.dart';
 import 'package:amal_charity/business_logic/Provider/AppProvider/ProviderAppData.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,8 +11,10 @@ class ParentsData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ProviderAppData>(
+    return Consumer<ProviderFamilyData>(
       builder: (context,_,child) {
+        var _husband = _.family!.husband!;
+        var _wife =_.family!.wife!;
         return ListView(
           children: [
             Container(
@@ -19,17 +22,17 @@ class ParentsData extends StatelessWidget {
               child: Column(
                 children: [
                   CusContainerData(
-                      leading: 'الزوج : ', title: _.testData),
+                      leading: 'الزوج : ', title: _husband.name!),
                   CusContainerData(
-                      leading: 'العمر : ', title: '53'),
+                      leading: 'العمر : ', title: '${_husband.age}'),
                   CusContainerData(
-                      leading: 'قادر للعمل : ', title: ' نعم '),
+                      leading: 'قادر للعمل : ', title: ' ${_husband.enableWork} '),
                   CusContainerData(
-                      leading: 'الوظيفه : ', title: 'ورشه نجاره '),
+                      leading: 'الوظيفه : ', title: '${_husband.job}'),
                   CusContainerData(
-                      leading: 'مؤهل التعليم : ', title: ' دبلوم '),
+                      leading: 'مؤهل التعليم : ', title: ' ${_husband.education} '),
                   CusContainerData(
-                      leading: 'الهاتف : ', title: '01023654789'),
+                      leading: 'الهاتف : ', title: '${_husband.teleNumber}'),
                 ],
               ),
             ),
@@ -43,19 +46,19 @@ class ParentsData extends StatelessWidget {
               child: Column(
                 children: [
                   CusContainerData(
-                      leading: 'الزوجه : ', title: 'رافت محمد'),
+                      leading: 'الزوجه : ', title: '${_wife.name}'),
                   CusContainerData(
-                      leading: 'العمر : ', title: '48'),
+                      leading: 'العمر : ', title: '${_wife.age}'),
                   CusContainerData(
-                      leading: ' قادره للزواج : ', title: 'لا'),
+                      leading: ' قادره للزواج : ', title: '${_wife.enableMarry}'),
                   CusContainerData(
-                      leading: 'قادره للعمل : ', title: ' لا '),
+                      leading: 'قادره للعمل : ', title: ' ${_wife.enableWork} '),
                   CusContainerData(
-                      leading: 'الوظيفه : ', title: 'ربه منزل '),
+                      leading: 'الوظيفه : ', title: '${_wife.job} '),
                   CusContainerData(
-                      leading: 'مؤهل التعليم : ', title: ' دبلوم '),
+                      leading: 'مؤهل التعليم : ', title: ' ${_wife.job} '),
                   CusContainerData(
-                      leading: 'الهاتف : ', title: '01023654789'),
+                      leading: 'الهاتف : ', title: '${_wife.teleNumber}'),
                 ],
               ),
             ),

@@ -1,7 +1,10 @@
+import 'package:amal_charity/business_logic/Provider/ApiProvider/FamilyData.dart';
 import 'package:amal_charity/constants/my_colors.dart';
+import 'package:amal_charity/data/models/family_detailed.dart';
 import 'package:amal_charity/presentation/my_screens/Widget/CusContainerData.dart';
 import 'package:amal_charity/presentation/my_screens/Widget/CustomDivider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MedicalData extends StatefulWidget {
   const MedicalData({Key? key}) : super(key: key);
@@ -19,17 +22,22 @@ class _MedicalDataState extends State<MedicalData> {
   int wifeMedic=2;
   int childMedic=1;
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        CusContainerData(leading: 'العلاج كامل', title: '1300 (int only)'),
-        CustomListGenerate('علاج الاب',0),
-        CustomListGenerate('علاج الام',1),
-        CustomListGenerate('علاج الابناء',2),
-      ],
+    return Consumer<ProviderFamilyData>(
+      builder: (context,_,child) {
+        var _medicine = _.family!.medicine!;
+        return ListView(
+          children: [
+            CusContainerData(leading: 'العلاج كامل', title: '1300 (int only)'),
+            CustomListGenerate('علاج الاب',0,_medicine),
+            CustomListGenerate('علاج الام',1,_medicine),
+            CustomListGenerate('علاج الابناء',2,_medicine),
+          ],
+        );
+      }
     );
   }
 
-  Widget CustomListGenerate(String title,int medicinType) {
+  Widget CustomListGenerate(String title,int medicinType,BasicClass _medicine) {
     return Container(
       //color: Colors.cyan,
       child: Column(
@@ -64,8 +72,8 @@ class _MedicalDataState extends State<MedicalData> {
               medicinType==0 ?husbandMedic:medicinType==1?wifeMedic:childMedic,
               (index) => Column(
                 children: [
-                  CusContainerData(leading: 'اسم الدواء', title: " كيتوفان "),
-                  CusContainerData(leading: 'التركيز', title: '500'),
+                  CusContainerData(leading: 'اسم الدواء', title: " ${_medicine.info} "),
+                  CusContainerData(leading: 'التركيز', title: '${_medicine.price}'),
                   CustomDevider().mineiDivider(),
                 ],
               ),

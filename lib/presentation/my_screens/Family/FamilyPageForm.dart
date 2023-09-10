@@ -12,6 +12,7 @@ import 'package:amal_charity/presentation/Widget/buildHeader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import '../../../business_logic/Provider/ApiProvider/FamilyData.dart';
 import '../../../business_logic/api/get_all_families/families_cubit.dart';
 import '../../../data/repositories/families_repo.dart';
 import '../../../data/web_services/families_web_services.dart';
@@ -95,7 +96,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                                       onPressed: () {
                                         cubit.getFamilyById(
                                             widget.familyId, context);
-                                        // Provider.of<ProviderFamilyData>(context,listen: false).GetFamilyData();
+                                        print('${Provider.of<ProviderFamilyData>(context,listen: false).family!.husband!.name}');
                                       },
                                       child: Container(
                                         child: const Text('Family Api '),
@@ -128,7 +129,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                           icon: const Icon(Icons.edit))
                     ],
                   ),
-                  drawer: const Drawer(
+                  drawer:  Drawer(
                     child: SingleChildScrollView(
                       child: Column(
                         children: [

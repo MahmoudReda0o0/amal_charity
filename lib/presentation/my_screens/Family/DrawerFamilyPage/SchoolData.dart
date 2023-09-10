@@ -1,6 +1,8 @@
+import 'package:amal_charity/business_logic/Provider/ApiProvider/FamilyData.dart';
 import 'package:amal_charity/constants/my_colors.dart';
 import 'package:amal_charity/presentation/my_screens/Widget/CustomDivider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../Widget/CusContainerData.dart';
 
@@ -19,33 +21,38 @@ class _SchoolDataState extends State<SchoolData> {
   String dropdownCh2='اعدادي';
   List<String> houseList = ['جامعي','ثانوي','اعدادي','ابتدائي'];
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Container(
-          color: Colors.grey[200],
-          child: Column(
-            children: [
-              CusContainerData(leading: 'الأسم : ', title: 'محمد '),
-              CusContainerData(leading: 'العمر : ', title: '21 '),
-              CustomHouseDropButtom(dropdownValue: dropdownCh1),
-            ],
-          ),
-        ),
-        CustomDevider().mineiDivider(),
-        Container(
-          color: Colors.grey[200],
-          child: Column(
-            children: [
-              CusContainerData(leading: 'الأسم : ', title: 'محمد '),
-              CusContainerData(leading: 'العمر : ', title: '21 '),
-              CustomHouseDropButtom(dropdownValue: dropdownCh2),
-            ],
-          ),
-        ),
-        CustomDevider().fullDivider(),
-        Center(child: Text('شنط المدرسه',style: TextStyle(color: PublicColor().green,fontSize: 20),),),
-        CusContainerData(leading: 'عدد الشنط', title: '3'),
-      ],
+    return Consumer<ProviderFamilyData>(
+      builder: (context,_,child) {
+        var _school = _.family!.school!;
+        return ListView(
+          children: [
+            Container(
+              color: Colors.grey[200],
+              child: Column(
+                children: [
+                  CusContainerData(leading: 'الأسم : ', title: '${_school.children![0].name} '),
+                  CusContainerData(leading: 'العمر : ', title: '${_school.children![0].educationLevel} '),
+                  CustomHouseDropButtom(dropdownValue: dropdownCh1),
+                ],
+              ),
+            ),
+            CustomDevider().mineiDivider(),
+            Container(
+              color: Colors.grey[200],
+              child: Column(
+                children: [
+                  CusContainerData(leading: 'الأسم : ', title: '${_school.children![1].name }'),
+                  CusContainerData(leading: 'العمر : ', title: '${_school.children![1].educationLevel }'),
+                  CustomHouseDropButtom(dropdownValue: dropdownCh2),
+                ],
+              ),
+            ),
+            CustomDevider().fullDivider(),
+            Center(child: Text('شنط المدرسه',style: TextStyle(color: PublicColor().green,fontSize: 20),),),
+            CusContainerData(leading: 'عدد الشنط', title: '${_school.bagNumber}'),
+          ],
+        );
+      }
     );
   }
 
