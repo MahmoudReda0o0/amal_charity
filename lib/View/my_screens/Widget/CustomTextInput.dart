@@ -51,17 +51,6 @@ class CustomTextInput {
               color: PublicColor.one,
             ),
           ),
-          // focusedBorder: OutlineInputBorder(
-          //     borderSide: BorderSide(
-          //       color: Color(0xffc2c9d1),
-          //     ),
-          //     borderRadius: BorderRadius.circular(10)),
-          // enabledBorder: OutlineInputBorder(
-          //   borderRadius: BorderRadius.circular(10),
-          //   borderSide: BorderSide(
-          //     color: Color(0xffc2c9d1),
-          //   ),
-          // ),
         ),
       ),
     );

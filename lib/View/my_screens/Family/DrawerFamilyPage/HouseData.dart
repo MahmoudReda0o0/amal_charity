@@ -16,44 +16,54 @@ class _HouseDataState extends State<HouseData> {
   @override
   String dropdownValue = 'ايجار';
   List<String> houseList = ['ميراث', 'ايجار', 'تميلك'];
+  @override
   Widget build(BuildContext context) {
     double mediaH = MediaQuery.of(context).size.height;
     double mediaW = MediaQuery.of(context).size.width;
-    return Consumer<ProviderFamilyData>(
-      builder: (context,_,child) {
-        var _house = _.family!.houseInfo!;
-        return ListView(
-          children: [
-            CustomHouseDropButtom(),
-            CusContainerData(leading: 'ايجار الشهر : ', title: " ${_house.houseType} "),
-            CusContainerData(leading: 'عدد الغرف : ', title: '${_house.roomsNumber}'),
-            CustomDevider().fullDivider(),
-            Center(child: Text('البطاطين ',style: TextStyle(color: Colors.green,fontSize: 30),),),
-            CusContainerData(leading: 'مع الاسره : ', title: " ${_house.blankets!.familyHave!} "),
-            CusContainerData(leading: 'العدد المطلوب : ', title: " ${_house.blankets!.familyNeed!} "),
-            CusContainerData(leading: 'العدد اللي خارج : ', title: " ${_house.blankets!.familyTake!} "),
-
-
-          ],
-        );
-      }
-    );
+    return Consumer<ProviderFamilyData>(builder: (context, _, child) {
+      var house = _.family!.houseInfo!;
+      return ListView(
+        children: [
+          CustomHouseDropButtom(),
+          CusContainerData(
+              leading: 'ايجار الشهر : ', title: " ${house.houseType} "),
+          CusContainerData(
+              leading: 'عدد الغرف : ', title: '${house.roomsNumber}'),
+          CustomDevider().fullDivider(),
+          const Center(
+            child: Text(
+              'البطاطين ',
+              style: TextStyle(color: Colors.green, fontSize: 30),
+            ),
+          ),
+          CusContainerData(
+              leading: 'مع الاسره : ',
+              title: " ${house.blankets!.familyHave!} "),
+          CusContainerData(
+              leading: 'العدد المطلوب : ',
+              title: " ${house.blankets!.familyNeed!} "),
+          CusContainerData(
+              leading: 'العدد اللي خارج : ',
+              title: " ${house.blankets!.familyTake!} "),
+        ],
+      );
+    });
   }
 
-  Widget CustomHouseDropButtom(){
+  Widget CustomHouseDropButtom() {
     return Padding(
-      padding: EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 10),
       child: Container(
         height: 70,
         width: 900,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         child: Center(
           child: ListTile(
             title: dropDownButton(),
-            leading: Text(
+            leading: const Text(
               ' المنزل : ',
               style: TextStyle(fontSize: 16, color: Colors.black54),
               overflow: TextOverflow.ellipsis,
@@ -75,7 +85,7 @@ class _HouseDataState extends State<HouseData> {
           value: value,
           child: Text(
             value,
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
           ),
         );
       }).toList(),

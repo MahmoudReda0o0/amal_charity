@@ -1,17 +1,8 @@
-
 import 'package:amal_charity/constants/constantValues.dart';
-import 'package:amal_charity/data/models/families_model.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/link.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../../State Managment/Provider/AppProvider/ProviderUserProfile.dart';
 import '../../../constants/my_colors.dart';
-import '../../../data/repositories/families_repo.dart';
-import '../../../data/web_services/families_web_services.dart';
 import '../HomeScreen/HomeScreen.dart';
 import '../Widget/CustomTextInput.dart';
 
@@ -30,16 +21,16 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     double keyboard = MediaQuery.of(context).viewInsets.bottom;
-    return Consumer<ProviderUserProfile>(
-      builder: (context,_,child) {
-        return SafeArea(
-          child: GestureDetector(
-            onTap: () {
-              FocusScope.of(context).unfocus();
-            },
-            child: Scaffold(
-              resizeToAvoidBottomInset: false,
-              body: Column(
+    return Consumer<ProviderUserProfile>(builder: (context, _, child) {
+      return SafeArea(
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            body: SingleChildScrollView(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -49,13 +40,13 @@ class _LoginState extends State<Login> {
                   Text(
                     'تسجيل الدخول ',
                     style: TextStyle(
-                        color: PublicColor.green, fontSize: mediaW * 0.05),
+                        color: PublicColor.green, fontSize: mediaW * 0.02),
                   ),
                   SizedBox(
                     height: mediaH * 0.024,
                   ),
                   keyboard == 0
-                      ? Container(
+                      ? SizedBox(
                           height: mediaH * 0.3,
                           width: mediaW * 0.85,
                           // color: Colors.green,
@@ -167,11 +158,13 @@ class _LoginState extends State<Login> {
                           content: Text('Open Family Screen'),
                         ),
                       );
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => HomeScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomeScreen()));
                       // GoRouter.of(context).go('/FamilyList');
                     },
-                    child: Container(
+                    child: SizedBox(
                       height: mediaH * 0.07,
                       width: mediaW * 0.85,
                       child: Center(
@@ -186,8 +179,8 @@ class _LoginState extends State<Login> {
               ),
             ),
           ),
-        );
-      }
-    );
+        ),
+      );
+    });
   }
 }

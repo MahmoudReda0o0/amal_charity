@@ -41,7 +41,6 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocProvider<FamiliesCubit>(
       create: (context) =>
           FamiliesCubit(repo: FamiliesRepo(FamiliesWebServices()))
@@ -97,7 +96,8 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                                       onPressed: () {
                                         cubit.getFamilyById(
                                             widget.familyId, context);
-                                        print('${Provider.of<ProviderFamilyData>(context,listen: false).family!.husband!.name}');
+                                        print(
+                                            '${Provider.of<ProviderFamilyData>(context, listen: false).family!.husband!.name}');
                                       },
                                       child: Container(
                                         child: const Text('Family Api '),
@@ -130,7 +130,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                           icon: const Icon(Icons.edit))
                     ],
                   ),
-                  drawer:  Drawer(
+                  drawer: const Drawer(
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
@@ -140,59 +140,62 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                       ),
                     ),
                   ),
-                  body: Stack(
-                    children: [
-                      Container(
-                        height: mediaH * 0.3,
-                        width: mediaW,
-                        color: Colors.green,
-                      ),
-                      SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SizedBox(
-                              height: mediaH * 0.03,
-                              width: mediaW,
-                            ),
-                            Container(
-                              width: mediaW,
-                              height: mediaH * 0.85,
-                              padding: const EdgeInsets.only(
-                                right: 10,
-                                left: 10,
-                                bottom: 10,
-                                top: 11,
-                              ),
-                              decoration: BoxDecoration(
-                                color: PublicColor.one,
-                                borderRadius: const BorderRadius.only(
-                                  topRight: Radius.circular(35),
-                                  topLeft: Radius.circular(35),
-                                ),
-                              ),
-                              child: _.drawerIndex == 0
-                                  ? const FamilyProfile()
-                                  : _.drawerIndex == 1
-                                      ? const ParentsData()
-                                      : _.drawerIndex == 2
-                                          ? const ChildrenData()
-                                          : _.drawerIndex == 3
-                                              ? const IncomeExpenses()
-                                              : _.drawerIndex == 4
-                                                  ? const DebtData()
-                                                  : _.drawerIndex == 5
-                                                      ? const HouseData()
-                                                      : _.drawerIndex == 6
-                                                          ? const MedicalData()
-                                                          : _.drawerIndex == 7
-                                                              ? const SchoolData()
-                                                              : const BrideData(),
-                            ),
-                          ],
+                  body: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: mediaH * 0.3,
+                          width: mediaW,
+                          color: Colors.green,
                         ),
-                      ),
-                    ],
+                        SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(
+                                height: mediaH * 0.03,
+                                width: mediaW,
+                              ),
+                              Container(
+                                width: mediaW,
+                                height: mediaH * 0.85,
+                                padding: const EdgeInsets.only(
+                                  right: 10,
+                                  left: 10,
+                                  bottom: 10,
+                                  top: 11,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: PublicColor.one,
+                                  borderRadius: const BorderRadius.only(
+                                    topRight: Radius.circular(35),
+                                    topLeft: Radius.circular(35),
+                                  ),
+                                ),
+                                child: _.drawerIndex == 0
+                                    ? const FamilyProfile()
+                                    : _.drawerIndex == 1
+                                        ? const ParentsData()
+                                        : _.drawerIndex == 2
+                                            ? const ChildrenData()
+                                            : _.drawerIndex == 3
+                                                ? const IncomeExpenses()
+                                                : _.drawerIndex == 4
+                                                    ? const DebtData()
+                                                    : _.drawerIndex == 5
+                                                        ? const HouseData()
+                                                        : _.drawerIndex == 6
+                                                            ? const MedicalData()
+                                                            : _.drawerIndex == 7
+                                                                ? const SchoolData()
+                                                                : const BrideData(),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               });

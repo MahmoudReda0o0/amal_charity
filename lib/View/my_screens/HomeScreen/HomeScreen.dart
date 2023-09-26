@@ -1,7 +1,10 @@
+import 'package:amal_charity/State%20Managment/api/get_all_families/families_cubit.dart';
 import 'package:amal_charity/constants/my_colors.dart';
-
+import 'package:amal_charity/data/repositories/families_repo.dart';
+import 'package:amal_charity/data/web_services/families_web_services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../constants/constantValues.dart';
@@ -20,6 +23,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   CarouselController carouselController = CarouselController();
+  var repo = FamiliesRepo(FamiliesWebServices());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -91,12 +95,22 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               CusHomeCard(
-                                  imageurl:
-                                      'assets/images/homescreen/familyicon.png',
-                                  fun: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>FamilyList()));
-                                   // GoRouter.of(context).go('/FamilyList');
-                                  }),
+                                imageurl:
+                                    'assets/images/homescreen/familyicon.png',
+                                fun: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => BlocProvider(
+                                        create: (context) =>
+                                            FamiliesCubit(repo: repo)
+                                              ..getAllFamilies(),
+                                        child: const FamilyList(),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
                               SizedBox(width: mediaW * 0.1),
                               CusHomeCard(
                                   imageurl:
@@ -114,7 +128,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   imageurl:
                                       'assets/images/homescreen/familyicon.png',
                                   fun: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>UserProfile()));
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const UserProfile()));
                                   }),
                               SizedBox(width: mediaW * 0.1),
                               CusHomeCard(

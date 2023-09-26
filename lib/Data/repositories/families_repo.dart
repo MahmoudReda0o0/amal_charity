@@ -25,4 +25,21 @@ class FamiliesRepo {
     final family = await webServices.getFamilyById(familyId);
     return FamilyDetailedModel.fromJson(family[0]);
   }
+
+
+
+
+   Future<String> addNewFamily(
+    FamilyDetailedModel familyDetailedModel
+  ) async {
+    final message = await webServices.addNewFamily(familyDetailedModel);
+    return message;
+  }
+
+
+  
+   Future<String> deleteFamily(String familyId,) async {
+    final message = await webServices.deleteFamily(familyId);
+    return message;
+  }
 }

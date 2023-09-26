@@ -1,10 +1,8 @@
-import 'package:amal_charity/data/models/family_detailed.dart';
+import 'package:amal_charity/data/models/families_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
-
 import '../../../State Managment/api/get_all_families/families_cubit.dart';
-import '../../../constants/generated/l10n.dart';
 import 'FamilyPageForm.dart';
 
 class FamilyList extends StatelessWidget {
@@ -12,12 +10,12 @@ class FamilyList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = FamiliesCubit.get(context);
-    cubit.getDetailedFamilies();
+
     return Scaffold(
       backgroundColor: HexColor("#F7F2EC"),
       appBar: AppBar(
-        title: Text(
-          S.of(context).families_list,
+        title: const Text(
+          "قائمة الاسر",
         ),
         backgroundColor: Colors.green,
         elevation: 0,
@@ -25,14 +23,20 @@ class FamilyList extends StatelessWidget {
       body: BlocConsumer<FamiliesCubit, FamiliesState>(
         listener: (context, state) {},
         builder: (context, state) {
-          return state is GetDetailedFamiliesSuccess
+          return state is GetFamiliesSuccessState
               ? ListView.separated(
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    return _buildListItem(
-                        index, context, cubit.detailedFamilies[index]);
+                    return Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: _buildListItem(
+                        index,
+                        context,
+                        cubit.families[index],
+                      ),
+                    );
                   },
-                  itemCount: cubit.detailedFamilies.length,
+                  itemCount: cubit.families.length,
                   separatorBuilder: (context, index) => Container(),
                 )
               : const Center(
@@ -43,14 +47,13 @@ class FamilyList extends StatelessWidget {
     );
   }
 
-  Widget _buildListItem(
-      int index, BuildContext context, FamilyDetailedModel family) {
+  Widget _buildListItem(int index, BuildContext context, FamilyModel family) {
     return InkWell(
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => FamilyPageForm(
-            familyId: family.familyInfo!.sId ?? "",
+            familyId: family.id ?? "",
             index: index,
           ),
         ),
@@ -88,7 +91,7 @@ class FamilyList extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    '${S.of(context).family}${index + 1}',
+                    'الاسرة \n${index + 1}',
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -105,38 +108,46 @@ class FamilyList extends StatelessWidget {
               flex: 3,
               child: Padding(
                 padding: const EdgeInsetsDirectional.only(
-                    start: 8, top: 8, bottom: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '${S.of(context).name} /${family.husband?.name ?? " "}',
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.black,
+                  start: 4,
+                  top: 4,
+                  bottom: 4,
+                  end: 4,
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'الاسم/ ${family.familyInfo?.familyBreadWinner ?? " "}',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                    Text(
-                      '${S.of(context).address} / ${family.familyInfo?.familyAdress ?? " "}',
-                      maxLines: 1,
-                      overflow: TextOverflow.clip,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.black,
+                      Text(
+                        'العنوان/ ${family.familyInfo?.familyAdress ?? " "}',
+                        maxLines: 1,
+                        overflow: TextOverflow.clip,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                    Text(
-                      '${S.of(context).phone} / ${family.husband?.teleNumber ?? " "}',
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.black,
+                      const Text(
+                        'التليفون/ 010894050302',
+                        maxLines: 1,
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -11,7 +11,7 @@ class CusContainerData extends StatelessWidget {
     this.conHeight,
     this.conWidth,
     this.fun,
-    this.extraBool:false,
+    this.extraBool = false,
     this.extraDetail,
   });
   double? conHeight;
@@ -19,15 +19,13 @@ class CusContainerData extends StatelessWidget {
   String title;
   String leading;
   Function? fun;
-  bool? extraBool ;
+  bool? extraBool;
   String? extraDetail;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: Container(
-        height: conHeight ?? 75,
-        width: conWidth ?? 900,
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -37,10 +35,6 @@ class CusContainerData extends StatelessWidget {
           children: [
             Center(
               child: ListTile(
-                // title:FittedBox(
-                //     fit: BoxFit.scaleDown,
-                //     child: Text(title,style: TextStyle(fontSize: 20),overflow: TextOverflow.ellipsis,),
-                // ),
                 trailing: IconButton(
                   onPressed: () {
                     showDialog(
@@ -50,7 +44,7 @@ class CusContainerData extends StatelessWidget {
                       ),
                     );
                   },
-                  icon: Icon(Icons.settings),
+                  icon: const Icon(Icons.settings),
                 ),
                 title: Text(
                   title,
@@ -74,8 +68,11 @@ class CusContainerData extends StatelessWidget {
             Visibility(
                 visible: extraBool!,
                 child: Padding(
-                  padding:  EdgeInsets.fromLTRB(0,0,20,0),
-                  child: Text('${'$extraDetail'}',style: TextStyle(fontSize:15,color: Colors.black54 ),),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                  child: Text(
+                    '$extraDetail',
+                    style: const TextStyle(fontSize: 15, color: Colors.black54),
+                  ),
                 )),
           ],
         ),

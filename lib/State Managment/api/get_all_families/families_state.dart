@@ -19,3 +19,17 @@ class GetFamiliesSuccessState extends FamiliesState {}
 class GetFamilyByIdSuccessState extends FamiliesState {}
 
 class GetDetailedFamiliesSuccess extends FamiliesState {}
+
+class AddNewFamilySuccessState extends FamiliesState {
+  late final String message;
+  AddNewFamilySuccessState({
+    required this.message,
+  });
+}
+
+class DeleteFamilySuccessState extends FamiliesState {
+  late final String message;
+  DeleteFamilySuccessState({
+    required this.message,
+  });
+}

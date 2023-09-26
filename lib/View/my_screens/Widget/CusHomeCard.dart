@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
 
 class CusHomeCard extends StatelessWidget {
-   CusHomeCard({required this.imageurl,required this.fun});
-   String imageurl;
-   Function fun;
+  CusHomeCard({super.key, required this.imageurl, required this.fun});
+  String imageurl;
+  Function fun;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         fun();
       },
       child: Container(
-        height: 170,
-        width: 140,
-        //height: mediaH * 0.23,
-        //width: mediaW * 0.35,
-        padding: EdgeInsets.all(10),
+        height: 100,
+        width: 100,
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black12,
                 blurRadius: 1,
@@ -27,7 +25,8 @@ class CusHomeCard extends StatelessWidget {
               ),
             ]),
         child: Image(
-          image: AssetImage('$imageurl'),fit: BoxFit.contain,
+          image: AssetImage(imageurl),
+          fit: BoxFit.contain,
         ),
       ),
     );
