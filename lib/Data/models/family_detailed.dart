@@ -1,6 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class FamilyDetailedModel {
   String? sId;
-  FamilyInfo? familyInfo;
+  FamilyInfoFromDetailed? familyInfo;
   Husband? husband;
   Wife? wife;
   Children? children;
@@ -13,11 +14,27 @@ class FamilyDetailedModel {
   School? school;
   int? total;
   int? iV;
+  FamilyDetailedModel({
+    this.sId,
+    this.familyInfo,
+    this.husband,
+    this.wife,
+    this.children,
+    this.income,
+    this.expenses,
+    this.debt,
+    this.houseInfo,
+    this.medicine,
+    this.bride,
+    this.school,
+    this.total,
+    this.iV,
+  });
 
   FamilyDetailedModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     familyInfo = json['FamilyInfo'] != null
-        ? FamilyInfo.fromJson(json['FamilyInfo'])
+        ? FamilyInfoFromDetailed.fromJson(json['FamilyInfo'])
         : null;
     husband =
         json['Husband'] != null ? Husband.fromJson(json['Husband']) : null;
@@ -38,9 +55,28 @@ class FamilyDetailedModel {
     total = json['Total'];
     iV = json['__v'];
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['FamilyInfo'] = familyInfo?.toJson();
+    data['Husband'] = husband?.toJson();
+    data['Wife'] = wife?.toJson();
+    data['Children'] = children?.toJson();
+    data['Income'] = income?.toJson();
+    data['Expenses'] = expenses?.toJson();
+    data['Debt'] = debt?.toJson();
+    data['HouseInfo'] = houseInfo?.toJson();
+    data['Medicine'] = medicine?.toJson();
+    data['Bride'] = bride?.toJson();
+    data['School'] = school?.toJson();
+    data['Total'] = total;
+    data['__v'] = iV;
+    return data;
+  }
 }
 
-class FamilyInfo {
+class FamilyInfoFromDetailed {
   int? familyNO;
   String? familyAdress;
   String? location;
@@ -50,7 +86,7 @@ class FamilyInfo {
   int? monthlyMoney;
   String? sId;
 
-  FamilyInfo({
+  FamilyInfoFromDetailed({
     this.familyNO,
     this.familyAdress,
     this.location,
@@ -61,16 +97,30 @@ class FamilyInfo {
     this.sId,
   });
 
-  FamilyInfo.fromJson(Map<String, dynamic> json) {
-    familyNO = json['familyNO'];
-    familyAdress = json['familyAdress'];
-    location = json['location'];
-    familyBreadWinner = json['familyBreadWinner'];
-    familyPercent = json['familyPercent'];
-    familyClass = json['familyClass'];
-    monthlyMoney = json['monthlyMoney'];
-    sId = json['sId'];
-    sId = json['_id'];
+  factory FamilyInfoFromDetailed.fromJson(Map<String, dynamic> json) {
+    return FamilyInfoFromDetailed(
+      familyNO: json['familyNO'],
+      familyAdress: json['familyAdress'],
+      location: json['location'],
+      familyBreadWinner: json['familyBreadWinner'],
+      familyPercent: json['familyPercent']?.toDouble(), // Parse as double
+      familyClass: json['familyClass'],
+      monthlyMoney: json['monthlyMoney'],
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['familyNO'] = familyNO;
+    data['familyAdress'] = familyAdress;
+    data['location'] = location;
+    data['familyBreadWinner'] = familyBreadWinner;
+    data['familyPercent'] = familyPercent;
+    data['familyClass'] = familyClass;
+    data['monthlyMoney'] = monthlyMoney;
+    data['_id'] = sId;
+    return data;
   }
 }
 
@@ -83,14 +133,38 @@ class Husband {
   String? teleNumber;
   String? sId;
 
-  Husband.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    age = json['age'];
-    enableWork = json['enableWork'];
-    job = json['job'];
-    education = json['education'];
-    teleNumber = json['teleNumber'];
-    sId = json['_id'];
+  Husband({
+    this.name,
+    this.age,
+    this.enableWork,
+    this.job,
+    this.education,
+    this.teleNumber,
+    this.sId,
+  });
+
+  factory Husband.fromJson(Map<String, dynamic> json) {
+    return Husband(
+      name: json['name'],
+      age: json['age'],
+      enableWork: json['enableWork'],
+      job: json['job'],
+      education: json['education'],
+      teleNumber: json['teleNumber'],
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['age'] = age;
+    data['enableWork'] = enableWork;
+    data['job'] = job;
+    data['education'] = education;
+    data['teleNumber'] = teleNumber;
+    data['_id'] = sId;
+    return data;
   }
 }
 
@@ -104,15 +178,41 @@ class Wife {
   String? teleNumber;
   String? sId;
 
-  Wife.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    age = json['age'];
-    enableWork = json['enableWork'];
-    enableMarry = json['enableMarry'];
-    job = json['job'];
-    education = json['education'];
-    teleNumber = json['teleNumber'];
-    sId = json['_id'];
+  Wife({
+    this.name,
+    this.age,
+    this.enableWork,
+    this.enableMarry,
+    this.job,
+    this.education,
+    this.teleNumber,
+    this.sId,
+  });
+
+  factory Wife.fromJson(Map<String, dynamic> json) {
+    return Wife(
+      name: json['name'],
+      age: json['age'],
+      enableWork: json['enableWork'],
+      enableMarry: json['enableMarry'],
+      job: json['job'],
+      education: json['education'],
+      teleNumber: json['teleNumber'],
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['age'] = age;
+    data['enableWork'] = enableWork;
+    data['enableMarry'] = enableMarry;
+    data['job'] = job;
+    data['education'] = education;
+    data['teleNumber'] = teleNumber;
+    data['_id'] = sId;
+    return data;
   }
 }
 
@@ -123,15 +223,22 @@ class Children {
 
   Children({this.childrenNumber, this.childInfo, this.sId});
 
-  Children.fromJson(Map<String, dynamic> json) {
-    childrenNumber = json['childrenNumber'];
-    if (json['childInfo'] != null) {
-      childInfo = <ChildInfo>[];
-      json['childInfo'].forEach((v) {
-        childInfo!.add(ChildInfo.fromJson(v));
-      });
-    }
-    sId = json['_id'];
+  factory Children.fromJson(Map<String, dynamic> json) {
+    return Children(
+      childrenNumber: json['childrenNumber'],
+      childInfo: (json['childInfo'] as List<dynamic>?)
+          ?.map((item) => ChildInfo.fromJson(item as Map<String, dynamic>))
+          .toList(),
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['childrenNumber'] = childrenNumber;
+    data['childInfo'] = childInfo?.map((item) => item.toJson()).toList();
+    data['_id'] = sId;
+    return data;
   }
 }
 
@@ -144,12 +251,24 @@ class ChildInfo {
 
   ChildInfo({this.name, this.age, this.gender, this.string, this.sId});
 
-  ChildInfo.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    age = json['age'];
-    gender = json['gender'];
-    string = json['string'];
-    sId = json['_id'];
+  factory ChildInfo.fromJson(Map<String, dynamic> json) {
+    return ChildInfo(
+      name: json['name'],
+      age: json['age'],
+      gender: json['gender'],
+      string: json['string'],
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['age'] = age;
+    data['gender'] = gender;
+    data['string'] = string;
+    data['_id'] = sId;
+    return data;
   }
 }
 
@@ -161,6 +280,7 @@ class Income {
   BasicClass? otherCharitiesHelp;
   List<BasicClass>? other;
   String? sId;
+
   Income.fromJson(Map<String, dynamic> json) {
     husbandJob = json['husbandJob'] != null
         ? BasicClass.fromJson(json['husbandJob'])
@@ -169,10 +289,9 @@ class Income {
     wifeJob =
         json['wifeJob'] != null ? BasicClass.fromJson(json['wifeJob']) : null;
     if (json['childrenjob'] != null) {
-      childrenjob = <Childrenjob>[];
-      json['childrenjob'].forEach((v) {
-        childrenjob!.add(Childrenjob.fromJson(v));
-      });
+      childrenjob = (json['childrenjob'] as List<dynamic>)
+          .map((item) => Childrenjob.fromJson(item as Map<String, dynamic>))
+          .toList();
     }
     pension =
         json['pension'] != null ? BasicClass.fromJson(json['pension']) : null;
@@ -181,12 +300,38 @@ class Income {
         ? BasicClass.fromJson(json['otherCharitiesHelp'])
         : null;
     if (json['other'] != null) {
-      other = <BasicClass>[];
-      json['other'].forEach((v) {
-        other!.add(BasicClass.fromJson(v));
-      });
+      other = (json['other'] as List<dynamic>)
+          .map((item) => BasicClass.fromJson(item as Map<String, dynamic>))
+          .toList();
     }
     sId = json['_id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+
+    if (husbandJob != null) {
+      data['husbandJob'] = husbandJob!.toJson();
+    }
+
+    if (wifeJob != null) {
+      data['wifeJob'] = wifeJob!.toJson();
+    }
+
+    data['childrenjob'] = childrenjob?.map((item) => item.toJson()).toList();
+
+    if (pension != null) {
+      data['pension'] = pension!.toJson();
+    }
+
+    if (otherCharitiesHelp != null) {
+      data['otherCharitiesHelp'] = otherCharitiesHelp!.toJson();
+    }
+
+    data['other'] = other?.map((item) => item.toJson()).toList();
+    data['_id'] = sId;
+
+    return data;
   }
 }
 
@@ -197,10 +342,20 @@ class BasicClass {
 
   BasicClass({this.info, this.price, this.sId});
 
-  BasicClass.fromJson(Map<String, dynamic> json) {
-    info = json['info'];
-    price = json['price'];
-    sId = json['_id'];
+  factory BasicClass.fromJson(Map<String, dynamic> json) {
+    return BasicClass(
+      info: json['info'],
+      price: json['price'],
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['info'] = info;
+    data['price'] = price;
+    data['_id'] = sId;
+    return data;
   }
 }
 
@@ -212,11 +367,22 @@ class Childrenjob {
 
   Childrenjob({this.name, this.info, this.price, this.sId});
 
-  Childrenjob.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    info = json['info'];
-    price = json['price'];
-    sId = json['_id'];
+  factory Childrenjob.fromJson(Map<String, dynamic> json) {
+    return Childrenjob(
+      name: json['name'],
+      info: json['info'],
+      price: json['price'],
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['info'] = info;
+    data['price'] = price;
+    data['_id'] = sId;
+    return data;
   }
 }
 
@@ -236,12 +402,34 @@ class Expenses {
     medicine = json['medicine'];
     food = json['food'] != null ? BasicClass.fromJson(json['food']) : null;
     if (json['other'] != null) {
-      other = <BasicClass>[];
-      json['other'].forEach((v) {
-        other!.add(BasicClass.fromJson(v));
-      });
+      other = (json['other'] as List<dynamic>)
+          .map((item) => BasicClass.fromJson(item as Map<String, dynamic>))
+          .toList();
     }
     sId = json['_id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['houseRent'] = houseRent;
+
+    if (basicNeed != null) {
+      data['basicNeed'] = basicNeed!.toJson();
+    }
+
+    data['medicine'] = medicine;
+
+    if (food != null) {
+      data['food'] = food!.toJson();
+    }
+
+    if (other != null) {
+      data['other'] = other!.map((item) => item.toJson()).toList();
+    }
+
+    data['_id'] = sId;
+
+    return data;
   }
 }
 
@@ -252,11 +440,23 @@ class BasicNeed {
   String? sId;
 
   BasicNeed({this.electricity, this.water, this.gas, this.sId});
-  BasicNeed.fromJson(Map<String, dynamic> json) {
-    electricity = json['electricity'];
-    water = json['water'];
-    gas = json['gas'];
-    sId = json['_id'];
+
+  factory BasicNeed.fromJson(Map<String, dynamic> json) {
+    return BasicNeed(
+      electricity: json['electricity'],
+      water: json['water'],
+      gas: json['gas'],
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['electricity'] = electricity;
+    data['water'] = water;
+    data['gas'] = gas;
+    data['_id'] = sId;
+    return data;
   }
 }
 
@@ -271,67 +471,62 @@ class Debt {
   List<BasicClass>? gas;
   String? sId;
 
-  Debt(
-      {this.loans,
-      this.food,
-      this.brideStuff,
-      this.houseRent,
-      this.medicine,
-      this.electeric,
-      this.water,
-      this.gas,
-      this.sId});
+  Debt({
+    this.loans,
+    this.food,
+    this.brideStuff,
+    this.houseRent,
+    this.medicine,
+    this.electeric,
+    this.water,
+    this.gas,
+    this.sId,
+  });
 
-  Debt.fromJson(Map<String, dynamic> json) {
-    if (json['loans'] != null) {
-      loans = <BasicClass>[];
-      json['loans'].forEach((v) {
-        loans!.add(BasicClass.fromJson(v));
-      });
-    }
-    if (json['food'] != null) {
-      food = <BasicClass>[];
-      json['food'].forEach((v) {
-        food!.add(BasicClass.fromJson(v));
-      });
-    }
-    if (json['brideStuff'] != null) {
-      brideStuff = <BasicClass>[];
-      json['brideStuff'].forEach((v) {
-        brideStuff!.add(BasicClass.fromJson(v));
-      });
-    }
-    if (json['houseRent'] != null) {
-      houseRent = <BasicClass>[];
-      json['houseRent'].forEach((v) {
-        houseRent!.add(BasicClass.fromJson(v));
-      });
-    }
-    if (json['medicine'] != null) {
-      medicine = <Medicine>[];
-      json['medicine'].forEach((v) {
-        medicine!.add(Medicine.fromJson(v));
-      });
-    }
-    if (json['electeric'] != null) {
-      electeric = <BasicClass>[];
-      json['electeric'].forEach((v) {
-        electeric!.add(BasicClass.fromJson(v));
-      });
-    }
-    if (json['water'] != null) {
-      water = <BasicClass>[];
-      json['water'].forEach((v) {
-        water!.add(BasicClass.fromJson(v));
-      });
-    }
-    if (json['gas'] != null) {
-      gas = <BasicClass>[];
-      json['gas'].forEach((v) {
-        gas!.add(BasicClass.fromJson(v));
-      });
-    }
-    sId = json['_id'];
+  factory Debt.fromJson(Map<String, dynamic> json) {
+    return Debt(
+      loans: (json['loans'] as List<dynamic>?)
+          ?.map((item) => BasicClass.fromJson(item as Map<String, dynamic>))
+          .toList(),
+      food: (json['food'] as List<dynamic>?)
+          ?.map((item) => BasicClass.fromJson(item as Map<String, dynamic>))
+          .toList(),
+      brideStuff: (json['brideStuff'] as List<dynamic>?)
+          ?.map((item) => BasicClass.fromJson(item as Map<String, dynamic>))
+          .toList(),
+      houseRent: (json['houseRent'] as List<dynamic>?)
+          ?.map((item) => BasicClass.fromJson(item as Map<String, dynamic>))
+          .toList(),
+      medicine: (json['medicine'] as List<dynamic>?)
+          ?.map((item) => Medicine.fromJson(item as Map<String, dynamic>))
+          .toList(),
+      electeric: (json['electeric'] as List<dynamic>?)
+          ?.map((item) => BasicClass.fromJson(item as Map<String, dynamic>))
+          .toList(),
+      water: (json['water'] as List<dynamic>?)
+          ?.map((item) => BasicClass.fromJson(item as Map<String, dynamic>))
+          .toList(),
+      gas: (json['gas'] as List<dynamic>?)
+          ?.map((item) => BasicClass.fromJson(item as Map<String, dynamic>))
+          .toList(),
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+
+    data['loans'] = loans?.map((item) => item.toJson()).toList();
+    data['food'] = food?.map((item) => item.toJson()).toList();
+    data['brideStuff'] = brideStuff?.map((item) => item.toJson()).toList();
+    data['houseRent'] = houseRent?.map((item) => item.toJson()).toList();
+    data['medicine'] = medicine?.map((item) => item.toJson()).toList();
+    data['electeric'] = electeric?.map((item) => item.toJson()).toList();
+    data['water'] = water?.map((item) => item.toJson()).toList();
+    data['gas'] = gas?.map((item) => item.toJson()).toList();
+    data['_id'] = sId;
+
+    return data;
   }
 }
 
@@ -349,13 +544,29 @@ class HouseInfo {
       this.blankets,
       this.sId});
 
-  HouseInfo.fromJson(Map<String, dynamic> json) {
-    houseType = json['houseType'];
-    monthlyRent = json['monthlyRent'];
-    roomsNumber = json['roomsNumber'];
-    blankets =
-        json['blankets'] != null ? Blankets.fromJson(json['blankets']) : null;
-    sId = json['_id'];
+  factory HouseInfo.fromJson(Map<String, dynamic> json) {
+    return HouseInfo(
+      houseType: json['houseType'],
+      monthlyRent: json['monthlyRent'],
+      roomsNumber: json['roomsNumber'],
+      blankets:
+          json['blankets'] != null ? Blankets.fromJson(json['blankets']) : null,
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['houseType'] = houseType;
+    data['monthlyRent'] = monthlyRent;
+    data['roomsNumber'] = roomsNumber;
+
+    if (blankets != null) {
+      data['blankets'] = blankets!.toJson();
+    }
+
+    data['_id'] = sId;
+    return data;
   }
 }
 
@@ -367,11 +578,22 @@ class Blankets {
 
   Blankets({this.familyHave, this.familyNeed, this.familyTake, this.sId});
 
-  Blankets.fromJson(Map<String, dynamic> json) {
-    familyHave = json['familyHave'];
-    familyNeed = json['familyNeed'];
-    familyTake = json['familyTake'];
-    sId = json['_id'];
+  factory Blankets.fromJson(Map<String, dynamic> json) {
+    return Blankets(
+      familyHave: json['familyHave'],
+      familyNeed: json['familyNeed'],
+      familyTake: json['familyTake'],
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['familyHave'] = familyHave;
+    data['familyNeed'] = familyNeed;
+    data['familyTake'] = familyTake;
+    data['_id'] = sId;
+    return data;
   }
 }
 
@@ -383,17 +605,39 @@ class Medicine {
 
   Medicine({this.husband, this.wife, this.children, this.sId});
 
-  Medicine.fromJson(Map<String, dynamic> json) {
-    husband = json['husband'] != null
-        ? ParentsRequiredMedicine.fromJson(json['husband'])
-        : null;
-    wife = json['wife'] != null
-        ? ParentsRequiredMedicine.fromJson(json['wife'])
-        : null;
-    children = json['children'] != null
-        ? ChildrenMedicine.fromJson(json['children'])
-        : null;
-    sId = json['_id'];
+  factory Medicine.fromJson(Map<String, dynamic> json) {
+    return Medicine(
+      husband: json['husband'] != null
+          ? ParentsRequiredMedicine.fromJson(json['husband'])
+          : null,
+      wife: json['wife'] != null
+          ? ParentsRequiredMedicine.fromJson(json['wife'])
+          : null,
+      children: json['children'] != null
+          ? ChildrenMedicine.fromJson(json['children'])
+          : null,
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+
+    if (husband != null) {
+      data['husband'] = husband!.toJson();
+    }
+
+    if (wife != null) {
+      data['wife'] = wife!.toJson();
+    }
+
+    if (children != null) {
+      data['children'] = children!.toJson();
+    }
+
+    data['_id'] = sId;
+
+    return data;
   }
 }
 
@@ -404,15 +648,35 @@ class ParentsRequiredMedicine {
 
   ParentsRequiredMedicine({this.medicineList, this.totalPrice, this.sId});
 
-  ParentsRequiredMedicine.fromJson(Map<String, dynamic> json) {
-    if (json['medicineList'] != null) {
-      medicineList = <MedicineList>[];
-      json['medicineList'].forEach((v) {
-        medicineList!.add(MedicineList.fromJson(v));
-      });
+  factory ParentsRequiredMedicine.fromJson(Map<String, dynamic> json) {
+    var medicineListData = json['medicineList'] as List<dynamic>?;
+
+    List<MedicineList>? medicineListItems;
+
+    if (medicineListData != null) {
+      medicineListItems = medicineListData.map((v) {
+        return MedicineList.fromJson(v as Map<String, dynamic>);
+      }).toList();
     }
-    totalPrice = json['totalPrice'];
-    sId = json['_id'];
+
+    return ParentsRequiredMedicine(
+      medicineList: medicineListItems,
+      totalPrice: json['totalPrice'],
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+
+    if (medicineList != null) {
+      data['medicineList'] = medicineList!.map((v) => v.toJson()).toList();
+    }
+
+    data['totalPrice'] = totalPrice;
+    data['_id'] = sId;
+
+    return data;
   }
 }
 
@@ -423,10 +687,20 @@ class MedicineList {
 
   MedicineList({this.info, this.concentration, this.sId});
 
-  MedicineList.fromJson(Map<String, dynamic> json) {
-    info = json['info'];
-    concentration = json['concentration'];
-    sId = json['_id'];
+  factory MedicineList.fromJson(Map<String, dynamic> json) {
+    return MedicineList(
+      info: json['info'],
+      concentration: json['concentration'],
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['info'] = info;
+    data['concentration'] = concentration;
+    data['_id'] = sId;
+    return data;
   }
 }
 
@@ -438,16 +712,37 @@ class ChildrenMedicine {
 
   ChildrenMedicine({this.name, this.medicineList, this.totalPrice, this.sId});
 
-  ChildrenMedicine.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    if (json['medicineList'] != null) {
-      medicineList = <MedicineList>[];
-      json['medicineList'].forEach((v) {
-        medicineList!.add(MedicineList.fromJson(v));
-      });
+  factory ChildrenMedicine.fromJson(Map<String, dynamic> json) {
+    var medicineListData = json['medicineList'] as List<dynamic>?;
+
+    List<MedicineList>? medicineListItems;
+
+    if (medicineListData != null) {
+      medicineListItems = medicineListData.map((v) {
+        return MedicineList.fromJson(v as Map<String, dynamic>);
+      }).toList();
     }
-    totalPrice = json['totalPrice'];
-    sId = json['_id'];
+
+    return ChildrenMedicine(
+      name: json['name'],
+      medicineList: medicineListItems,
+      totalPrice: json['totalPrice'],
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+
+    if (medicineList != null) {
+      data['medicineList'] = medicineList!.map((v) => v.toJson()).toList();
+    }
+
+    data['totalPrice'] = totalPrice;
+    data['_id'] = sId;
+
+    return data;
   }
 }
 
@@ -459,13 +754,24 @@ class Bride {
 
   Bride({this.weddingDate, this.brideType, this.brideDevices, this.sId});
 
-  Bride.fromJson(Map<String, dynamic> json) {
-    weddingDate = json['weddingDate'];
-    brideType = json['brideType'];
-    brideDevices = json['brideDevices'] != null
-        ? BrideDevices.fromJson(json['brideDevices'])
-        : null;
-    sId = json['_id'];
+  factory Bride.fromJson(Map<String, dynamic> json) {
+    return Bride(
+      weddingDate: json['weddingDate'],
+      brideType: json['brideType'],
+      brideDevices: json['brideDevices'] != null
+          ? BrideDevices.fromJson(json['brideDevices'])
+          : null,
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['weddingDate'] = weddingDate;
+    data['brideType'] = brideType;
+    data['brideDevices'] = brideDevices != null ? brideDevices!.toJson() : null;
+    data['_id'] = sId;
+    return data;
   }
 }
 
@@ -476,34 +782,74 @@ class BrideDevices {
   bool? kitchen;
   String? sId;
 
-  BrideDevices(
-      {this.fridge, this.washingMachine, this.cooker, this.kitchen, this.sId});
+  BrideDevices({
+    this.fridge,
+    this.washingMachine,
+    this.cooker,
+    this.kitchen,
+    this.sId,
+  });
 
-  BrideDevices.fromJson(Map<String, dynamic> json) {
-    fridge = json['fridge'];
-    washingMachine = json['washingMachine'];
-    cooker = json['cooker'];
-    kitchen = json['kitchen'];
-    sId = json['_id'];
+  factory BrideDevices.fromJson(Map<String, dynamic> json) {
+    return BrideDevices(
+      fridge: json['fridge'],
+      washingMachine: json['washingMachine'],
+      cooker: json['cooker'],
+      kitchen: json['kitchen'],
+      sId: json['_id'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['fridge'] = fridge;
+    data['washingMachine'] = washingMachine;
+    data['cooker'] = cooker;
+    data['kitchen'] = kitchen;
+    data['_id'] = sId;
+    return data;
   }
 }
 
 class School {
   List<ChildrenSchool>? children;
-  int? bagNumber;
+  String? bagNumber;
   String? sId;
 
+  // Constructor
   School({this.children, this.bagNumber, this.sId});
 
-  School.fromJson(Map<String, dynamic> json) {
-    if (json['children'] != null) {
-      children = <ChildrenSchool>[];
-      json['children'].forEach((v) {
-        children!.add(ChildrenSchool.fromJson(v));
-      });
+  // Factory constructor to create an instance from a JSON map
+  factory School.fromJson(Map<String, dynamic> json) {
+    var schoolChildren = json['children'] as List<dynamic>?;
+
+    List<ChildrenSchool>? childrenList;
+
+    if (schoolChildren != null) {
+      childrenList = schoolChildren.map((v) {
+        return ChildrenSchool.fromJson(v as Map<String, dynamic>);
+      }).toList();
     }
-    bagNumber = json['bagNumber'];
-    sId = json['_id'];
+
+    return School(
+      children: childrenList,
+      bagNumber: json['bagNumber'],
+      sId: json['_id'],
+    );
+  }
+
+  // Convert the object to a JSON map
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+
+    if (children != null) {
+      data['children'] = children!.map((v) => v.toJson()).toList();
+    }
+
+    data['bagNumber'] = bagNumber;
+    data['_id'] = sId;
+
+    return data;
   }
 }
 
@@ -514,9 +860,20 @@ class ChildrenSchool {
 
   ChildrenSchool({this.name, this.educationLevel, this.sId});
 
-  ChildrenSchool.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    educationLevel = json['educationLevel'];
-    sId = json['_id'];
+  // Factory constructor to create an instance from a JSON map
+  factory ChildrenSchool.fromJson(Map<String, dynamic> json) {
+    return ChildrenSchool(
+      name: json['name'],
+      educationLevel: json['educationLevel'],
+      sId: json['_id'],
+    );
+  }
+  // Convert the object to a JSON map
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['educationLevel'] = educationLevel;
+    data['_id'] = sId;
+    return data;
   }
 }

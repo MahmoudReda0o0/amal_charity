@@ -103,8 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     MaterialPageRoute(
                                       builder: (context) => BlocProvider(
                                         create: (context) =>
-                                            FamiliesCubit(repo: repo)
-                                              ..getAllFamilies(),
+                                            FamiliesCubit(repo: repo),
                                         child: const FamilyList(),
                                       ),
                                     ),

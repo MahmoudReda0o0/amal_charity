@@ -59,26 +59,9 @@ class FamiliesWebServices {
   Future<dynamic> getFamilyById(
     String familyId,
   ) async {
-   
-
     final uri = Uri.parse(
         'https://alamalcharity.onrender.com/cases/64cdec0b21c066c1eee767a2');
     final response = await http.get(uri);
-    if (response.statusCode == 200) {
-      dynamic result = jsonDecode(response.body);
-      print(result);
-      return result;
-    } else {
-      print('family response : ${response.body}');
-    }
-  }
-
-  Future<dynamic> addNewFamily(FamilyDetailedModel familyDetailedModel,) async {
-    log('addNewFamily');
-
-    final uri = Uri.parse(
-        '${baseUrl}cases/');
-    final response = await http.post(uri);
     if (response.statusCode == 200) {
       dynamic result = jsonDecode(response.body);
       log(result);
@@ -87,11 +70,42 @@ class FamiliesWebServices {
       log('family response : ${response.body}');
     }
   }
-    Future<dynamic> deleteFamily(String familyId,) async {
+
+  Future<void> addNewFamily(
+    Map<String, dynamic> map,
+  ) async {
+    log('addNewFamily');
+
+    final uri = Uri.parse('https://alamalcharity.onrender.com/cases/');
+    final response = await http.post(
+      uri,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(map),
+    );
+
+    if (response.statusCode == 200) {
+      if (response.headers['content-type'] ==
+          'application/json; charset=utf-8') {
+        // It's JSON, so parse it
+        dynamic result = jsonDecode(response.body);
+        log(result.toString());
+      } else {
+        // It's not JSON, handle it as a plain string
+        log('Response body (as string): ${response.body}');
+      }
+    } else {
+      log('Error response: ${response.body}');
+    }
+  }
+
+  Future<dynamic> deleteFamily(
+    String familyId,
+  ) async {
     log('deleteFamily');
 
-    final uri = Uri.parse(
-        '${baseUrl}cases/$familyId');
+    final uri = Uri.parse('${baseUrl}cases/$familyId');
     final response = await http.delete(uri);
     if (response.statusCode == 200) {
       dynamic result = jsonDecode(response.body);

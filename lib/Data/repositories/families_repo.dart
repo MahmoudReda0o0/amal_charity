@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../models/families_model.dart';
 import '../models/family_detailed.dart';
 import '../web_services/families_web_services.dart';
@@ -26,19 +28,18 @@ class FamiliesRepo {
     return FamilyDetailedModel.fromJson(family[0]);
   }
 
-
-
-
-   Future<String> addNewFamily(
-    FamilyDetailedModel familyDetailedModel
+  Future<void> addNewFamily(
+    Map<String, dynamic> map,
   ) async {
-    final message = await webServices.addNewFamily(familyDetailedModel);
-    return message;
+    log("repo go to add new family");
+    await webServices.addNewFamily(map);
+
+    // return message;
   }
 
-
-  
-   Future<String> deleteFamily(String familyId,) async {
+  Future<String> deleteFamily(
+    String familyId,
+  ) async {
     final message = await webServices.deleteFamily(familyId);
     return message;
   }

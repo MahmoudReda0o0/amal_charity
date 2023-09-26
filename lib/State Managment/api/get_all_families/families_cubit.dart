@@ -13,12 +13,13 @@ class FamiliesCubit extends Cubit<FamiliesState> {
   FamiliesRepo repo;
   List<FamilyModel> families = [];
   FamiliesCubit({required this.repo}) : super(FamiliesInitial());
-  static FamiliesCubit get(BuildContext context) => BlocProvider.of(context,);
+  static FamiliesCubit get(BuildContext context) => BlocProvider.of(
+        context,
+      );
 
   FamilyDataResult dataResult = FamilyDataResult();
   FamilyDataApi dataApi = FamilyDataApi();
   FamilyDetailedModel? family;
-
 
   //This is for you Mahmoud Read
   void getFamilyById(String familyId, BuildContext context) {
@@ -62,23 +63,26 @@ class FamiliesCubit extends Cubit<FamiliesState> {
   }
 
   String addNewFamilyMessage = "";
-  void addNewFamily({required FamilyDetailedModel family}) {
-    emit(Loading());
+  void addNewFamily({
+    required Map<String, dynamic> family,
+  }) {
+    log("cubit go to add new family");
     repo.addNewFamily(family).then((value) {
-      addNewFamilyMessage = value;
-      log(addNewFamilyMessage);
       emit(AddNewFamilySuccessState(message: "New family added succssfully"));
+      getAllFamilies();
     }).catchError((error) {
+      print("cubit the error ocured $error");
       emit(Error(error: error));
     });
   }
 
-   void deleteFamily({required String familyId}) {
+  void deleteFamily({required String familyId}) {
     emit(Loading());
     repo.deleteFamily(familyId).then((value) {
-      log(value);
+      log(value.toString());
       emit(DeleteFamilySuccessState(message: "Delete Family done succssfully"));
     }).catchError((error) {
+      print("$error");
       emit(Error(error: error));
     });
   }
