@@ -48,7 +48,7 @@ class _SchoolDataState extends State<SchoolData> {
               ),
             ),
             CustomDevider().fullDivider(),
-            Center(child: Text('شنط المدرسه',style: TextStyle(color: PublicColor().green,fontSize: 20),),),
+            Center(child: Text('شنط المدرسه',style: TextStyle(color: PublicColor.green,fontSize: 20),),),
             CusContainerData(leading: 'عدد الشنط', title: '${_school.bagNumber}'),
           ],
         );

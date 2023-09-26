@@ -23,7 +23,7 @@ class DebtData extends StatelessWidget {
                 Center(
                   child: Text(
                     'الديون : $totalDebt (total)',
-                    style: TextStyle(fontSize: 30, color: PublicColor().green),
+                    style: TextStyle(fontSize: 30, color: PublicColor.green),
                   ),
                 ),
                 CusContainerData(

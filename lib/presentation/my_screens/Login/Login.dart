@@ -30,8 +30,6 @@ class _LoginState extends State<Login> {
   bool rememberMe = false;
   @override
   Widget build(BuildContext context) {
-    double mediaH = MediaQuery.of(context).size.height;
-    double mediaW = MediaQuery.of(context).size.width;
     double keyboard = MediaQuery.of(context).viewInsets.bottom;
     return Consumer<ProviderUserProfile>(
       builder: (context,_,child) {
@@ -52,7 +50,7 @@ class _LoginState extends State<Login> {
                   Text(
                     'تسجيل الدخول ',
                     style: TextStyle(
-                        color: PublicColor().green, fontSize: mediaW * 0.05),
+                        color: PublicColor.green, fontSize: mediaW * 0.05),
                   ),
                   SizedBox(
                     height: mediaH * 0.024,
@@ -80,7 +78,7 @@ class _LoginState extends State<Login> {
                       hintTitle: 'اسم المستخدم',
                       leftIcon: Icon(
                         Icons.person_outline_sharp,
-                        color: PublicColor().green,
+                        color: PublicColor.green,
                       ),
                     ),
                   ),
@@ -95,7 +93,7 @@ class _LoginState extends State<Login> {
                       passwordMod: !showPassword,
                       leftIcon: Icon(
                         Icons.lock_outline,
-                        color: PublicColor().green,
+                        color: PublicColor.green,
                       ),
                       rightIcon: IconButton(
                         onPressed: () {
@@ -104,11 +102,11 @@ class _LoginState extends State<Login> {
                         icon: showPassword
                             ? Icon(
                                 Icons.remove_red_eye,
-                                color: PublicColor().green,
+                                color: PublicColor.green,
                               )
                             : Icon(
                                 Icons.remove_red_eye_outlined,
-                                color: PublicColor().green,
+                                color: PublicColor.green,
                               ),
                       ),
                     ),
@@ -150,11 +148,11 @@ class _LoginState extends State<Login> {
                         icon: rememberMe
                             ? Icon(
                                 Icons.check_box,
-                                color: PublicColor().green,
+                                color: PublicColor.green,
                               )
                             : Icon(
                                 Icons.check_box_outline_blank,
-                                color: PublicColor().green,
+                                color: PublicColor.green,
                               ),
                       ),
                     ),

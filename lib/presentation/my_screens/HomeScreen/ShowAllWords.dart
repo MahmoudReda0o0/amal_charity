@@ -7,7 +7,7 @@ class ShowAllWords extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double paddValue = 10;
+    double addValue = 10;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
@@ -17,10 +17,10 @@ class ShowAllWords extends StatelessWidget {
           PublicData.wiseWords.length,
           (index) => Container(
             margin: EdgeInsets.only(
-                left: paddValue, right: paddValue, top: paddValue),
+                left: addValue, right: addValue, top: addValue),
             height: 180,
             //width: 200,
-            color: PublicColor().one,
+            color: PublicColor.one,
             child: Center(child: Text('{ ${PublicData.wiseWords[index]} }',style: TextStyle(fontSize: 23,color: Colors.green),textAlign: TextAlign.center)),
           ),
         ),

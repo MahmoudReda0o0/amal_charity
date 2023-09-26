@@ -1,4 +1,5 @@
 import 'package:amal_charity/constants/my_colors.dart';
+import 'package:amal_charity/presentation/my_screens/Family/FamilyList.dart';
 import 'package:amal_charity/presentation/my_screens/HomeScreen/ShowAllWords.dart';
 import 'package:amal_charity/presentation/my_screens/UserProfile/UserProfile.dart';
 import 'package:amal_charity/presentation/my_screens/Widget/CusHomeCard.dart';
@@ -20,8 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
   CarouselController carouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
-    double mediaH = MediaQuery.of(context).size.height;
-    double mediaW = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -52,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: mediaH * 0.83,
                   width: mediaW,
                   decoration: BoxDecoration(
-                    color: PublicColor().one,
+                    color: PublicColor.one,
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(40),
                         topRight: Radius.circular(40)),
@@ -94,7 +93,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   imageurl:
                                       'assets/images/homescreen/familyicon.png',
                                   fun: () {
-                                    GoRouter.of(context).go('/FamilyList');
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>FamilyList()));
+                                   // GoRouter.of(context).go('/FamilyList');
                                   }),
                               SizedBox(width: mediaW * 0.1),
                               CusHomeCard(

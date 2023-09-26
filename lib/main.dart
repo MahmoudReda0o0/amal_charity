@@ -44,9 +44,9 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider<ProviderAppData>(create: (context)=>ProviderAppData()),
       ChangeNotifierProvider<ProviderUserProfile>(create: (context)=>ProviderUserProfile()),
     ],
-    child: MaterialApp.router(
+    child: MaterialApp(
       // navigatorKey: navigationKey,
-      routerConfig: router,
+      navigatorKey: navigationKey,
       debugShowCheckedModeBanner: false,
       locale: const Locale('ar'),
       localizationsDelegates: const [
@@ -57,6 +57,7 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Janna'),
+home: OpeningSplash(),
     ),
     );
   }

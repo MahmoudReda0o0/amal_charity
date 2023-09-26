@@ -14,6 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import '../../../business_logic/Provider/ApiProvider/FamilyData.dart';
 import '../../../business_logic/api/get_all_families/families_cubit.dart';
+import '../../../constants/constantValues.dart';
 import '../../../data/repositories/families_repo.dart';
 import '../../../data/web_services/families_web_services.dart';
 import 'DrawerFamilyPage/BrideData.dart';
@@ -39,8 +40,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
 
   @override
   Widget build(BuildContext context) {
-    double mediaH = MediaQuery.of(context).size.height;
-    double mediaW = MediaQuery.of(context).size.width;
+
     return BlocProvider<FamiliesCubit>(
       create: (context) =>
           FamiliesCubit(repo: FamiliesRepo(FamiliesWebServices()))
@@ -55,7 +55,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                 ///This is the family ya hoda
                 family = cubit.family;
                 return Scaffold(
-                  backgroundColor: PublicColor().one,
+                  backgroundColor: PublicColor.one,
                   appBar: AppBar(
                     backgroundColor: Colors.green,
                     bottomOpacity: 0.0,
@@ -164,7 +164,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                                 top: 11,
                               ),
                               decoration: BoxDecoration(
-                                color: PublicColor().one,
+                                color: PublicColor.one,
                                 borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(35),
                                   topLeft: Radius.circular(35),

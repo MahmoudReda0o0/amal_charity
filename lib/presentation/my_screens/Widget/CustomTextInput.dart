@@ -44,11 +44,11 @@ class CustomTextInput {
               borderSide: const BorderSide(color: Colors.red)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: PublicColor().one)),
+              borderSide: BorderSide(color: PublicColor.one)),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
-              color: PublicColor().one,
+              color: PublicColor.one,
             ),
           ),
           // focusedBorder: OutlineInputBorder(

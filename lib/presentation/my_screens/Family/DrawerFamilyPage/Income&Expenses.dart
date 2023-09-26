@@ -29,7 +29,7 @@ class IncomeExpenses extends StatelessWidget {
                   child: Text(
                     ' بيانات الدخل : $totalIncome (total) ',
                     style: TextStyle(
-                      color: PublicColor().green,
+                      color: PublicColor.green,
                       fontSize: 25,
                     ),
                   ),
@@ -115,7 +115,7 @@ class IncomeExpenses extends StatelessWidget {
                   child: Text(
                     'بيانات الخرج : $totalExpenses (total)',
                     style: TextStyle(
-                      color: PublicColor().green,
+                      color: PublicColor.green,
                       fontSize: 25,
                     ),
                   ),

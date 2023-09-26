@@ -8,10 +8,8 @@ import '../Login/Login.dart';
 class OpeningSplash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double mediaH =MediaQuery.of(context).size.height;
-    double mediaW =MediaQuery.of(context).size.width;
     return AnimatedSplashScreen(
-      backgroundColor: PublicColor().one,
+      backgroundColor: PublicColor.one,
       curve: Curves.bounceOut,
       duration:2000,
       splashIconSize:mediaH*0.44,

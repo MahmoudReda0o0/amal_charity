@@ -45,7 +45,7 @@ class _MedicalDataState extends State<MedicalData> {
           ListTile(
             title: Text(
               '$title : 350(Total)',
-              style: TextStyle(fontSize: 25, color: PublicColor().green),
+              style: TextStyle(fontSize: 25, color: PublicColor.green),
             ),
             leading: IconButton(
                 icon: Icon(Icons.add_circle),

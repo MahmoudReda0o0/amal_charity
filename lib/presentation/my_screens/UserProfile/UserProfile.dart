@@ -11,7 +11,7 @@ class UserProfile extends StatelessWidget {
     return Consumer<ProviderUserProfile>(
       builder: (context,_,child) {
         return Scaffold(
-          backgroundColor: PublicColor().one,
+          backgroundColor: PublicColor.one,
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
