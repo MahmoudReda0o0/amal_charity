@@ -1,11 +1,13 @@
-import 'package:amal_charity/business_logic/api/get_all_families/families_cubit.dart';
 import 'package:amal_charity/data/repositories/families_repo.dart';
 import 'package:amal_charity/data/web_services/families_web_services.dart';
-import 'package:amal_charity/presentation/my_screens/Login/Login.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../presentation/my_screens/Family/FamilyList.dart';
-import '../presentation/my_screens/Family/FamilyPageForm.dart';
+
+import '../State Managment/api/get_all_families/families_cubit.dart';
+import '../View/my_screens/Family/FamilyList.dart';
+import '../View/my_screens/Family/FamilyPageForm.dart';
+import '../View/my_screens/Login/Login.dart';
+
 
 final GoRouter router = GoRouter(routes: [
   GoRoute(path: '/', builder: (context, state) => const Login()),

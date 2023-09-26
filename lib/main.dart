@@ -1,16 +1,14 @@
-import 'package:amal_charity/business_logic/Provider/ApiProvider/FamilyData.dart';
-import 'package:amal_charity/business_logic/Provider/AppProvider/ProviderUserProfile.dart';
-import 'package:amal_charity/generated/l10n.dart';
-import 'package:amal_charity/presentation/my_screens/SplashScreen/OpeningSplash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'State Managment/Provider/ApiProvider/FamilyData.dart';
+import 'State Managment/Provider/AppProvider/ProviderAppData.dart';
+import 'State Managment/Provider/AppProvider/ProviderUserProfile.dart';
+import 'View/my_screens/SplashScreen/OpeningSplash.dart';
 import 'bloc_observer.dart';
-import 'business_logic/Provider/AppProvider/ProviderAppData.dart';
-import 'business_logic/api/get_all_families/families_cubit.dart';
 import 'constants/GoRouter.dart';
 import 'data/repositories/families_repo.dart';
 import 'data/web_services/families_web_services.dart';
@@ -48,14 +46,6 @@ class MyApp extends StatelessWidget {
       // navigatorKey: navigationKey,
       navigatorKey: navigationKey,
       debugShowCheckedModeBanner: false,
-      locale: const Locale('ar'),
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
       theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Janna'),
 home: OpeningSplash(),
     ),
