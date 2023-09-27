@@ -3,20 +3,30 @@ import 'package:flutter/material.dart';
 import '../../Data/models/family_detailed.dart';
 import '../../State Managment/api/get_all_families/families_cubit.dart';
 
-final _formKey = GlobalKey<FormState>();
+class BottomSheetForm extends StatefulWidget {
+  final FamiliesCubit cubit;
+  const BottomSheetForm({required this.cubit, super.key});
+  @override
+  State<BottomSheetForm> createState() => _BottomSheetFormState();
+}
 
-class BottomSheetForm extends StatelessWidget {
-  FamiliesCubit cubit;
+class _BottomSheetFormState extends State<BottomSheetForm> {
   final nameController = TextEditingController();
-  final addressController = TextEditingController();
-  final phoneController = TextEditingController();
 
-  BottomSheetForm({required this.cubit, super.key});
+  final addressController = TextEditingController();
+
+  final phoneController = TextEditingController();
+  late final GlobalKey<FormState> formKey;
+  @override
+  void initState() {
+    super.initState();
+    formKey = GlobalKey<FormState>();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Container(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -31,6 +41,7 @@ class BottomSheetForm extends StatelessWidget {
               ),
               const SizedBox(height: 20.0),
               TextFormField(
+                autofocus: true,
                 controller: nameController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -64,9 +75,7 @@ class BottomSheetForm extends StatelessWidget {
                   if (value == null || value.isEmpty) {
                     return "Sorry you have to fill this field!";
                   }
-                  if (value.length != 11 || value.length != 10) {
-                    return "sorry the phone must be 10 or 11  character";
-                  }
+
                   return null;
                 },
                 decoration: const InputDecoration(
@@ -77,7 +86,7 @@ class BottomSheetForm extends StatelessWidget {
               const SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
+                  if (formKey.currentState!.validate()) {
                     FamilyDetailedModel family = FamilyDetailedModel(
                       familyInfo: FamilyInfoFromDetailed(
                         familyBreadWinner: nameController.text,
@@ -85,7 +94,7 @@ class BottomSheetForm extends StatelessWidget {
                       ),
                     );
 
-                    cubit.addNewFamily(
+                    widget.cubit.addNewFamily(
                       family: family.toJson(),
                     );
                     Navigator.of(context).pop(); // Close the bottom sheet

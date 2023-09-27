@@ -53,8 +53,14 @@ class FamilyList extends StatelessWidget {
           showModalBottomSheet(
             context: context,
             builder: (BuildContext context) {
-              return BottomSheetForm(cubit: cubit);
+              return Padding(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                ),
+                child: BottomSheetForm(cubit: cubit),
+              );
             },
+            isScrollControlled: true,
           );
         },
         child: const Icon(
