@@ -27,13 +27,14 @@ class FamiliesCubit extends Cubit<FamiliesState> {
     emit(Loading());
     repo.getFamiliyById(familyId).then(
       (FamilyDetailedModel value) {
+        emit(GetFamilyByIdSuccessState());
+        print("The value of the family from the cubit is ${value.toString()}");
         family = value;
         Provider.of<ProviderFamilyData>(context, listen: false).family = family;
-        log("the retrieved husband age is ${family!.husband!.age}");
-        emit(GetFamilyByIdSuccessState());
+        print("the retrieved husband age is ${family!.husband!.age}");
       },
     ).catchError((error) {
-      log(error.toString());
+      log("Here is your error ${error.toString()}");
       emit(Error(error: error.toString()));
     });
   }

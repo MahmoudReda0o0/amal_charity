@@ -12,8 +12,7 @@ class FamilyDetailedModel {
   BasicClass? medicine;
   Bride? bride;
   School? school;
-  int? total;
-  int? iV;
+
   FamilyDetailedModel({
     this.sId,
     this.familyInfo,
@@ -27,8 +26,6 @@ class FamilyDetailedModel {
     this.medicine,
     this.bride,
     this.school,
-    this.total,
-    this.iV,
   });
 
   FamilyDetailedModel.fromJson(Map<String, dynamic> json) {
@@ -52,8 +49,6 @@ class FamilyDetailedModel {
         json['Medicine'] != null ? BasicClass.fromJson(json['Medicine']) : null;
     bride = json['Bride'] != null ? Bride.fromJson(json['Bride']) : null;
     school = json['School'] != null ? School.fromJson(json['School']) : null;
-    total = json['Total'];
-    iV = json['__v'];
   }
 
   Map<String, dynamic> toJson() {
@@ -70,8 +65,7 @@ class FamilyDetailedModel {
     data['Medicine'] = medicine?.toJson();
     data['Bride'] = bride?.toJson();
     data['School'] = school?.toJson();
-    data['Total'] = total;
-    data['__v'] = iV;
+
     return data;
   }
 }
@@ -813,7 +807,7 @@ class BrideDevices {
 
 class School {
   List<ChildrenSchool>? children;
-  String? bagNumber;
+  int? bagNumber;
   String? sId;
 
   // Constructor

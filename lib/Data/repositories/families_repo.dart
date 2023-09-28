@@ -25,6 +25,7 @@ class FamiliesRepo {
     String familyId,
   ) async {
     final family = await webServices.getFamilyById(familyId);
+    print("the family from the repos $family");
     return FamilyDetailedModel.fromJson(family[0]);
   }
 

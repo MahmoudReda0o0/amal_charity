@@ -19,7 +19,8 @@ class FamiliesWebServices {
       );
 
       if (response.statusCode == 200) {
-        final List<dynamic> families = jsonDecode(utf8.decode(response.bodyBytes));
+        final List<dynamic> families =
+            jsonDecode(utf8.decode(response.bodyBytes));
         return families;
       } else {
         print('#### Error: ${response.body}');
@@ -43,7 +44,8 @@ class FamiliesWebServices {
       );
 
       if (response.statusCode == 200) {
-        final List<dynamic> families = jsonDecode(response.body);
+        final List<dynamic> families =
+            jsonDecode(utf8.decode(response.bodyBytes));
         print("This is the families ${families[0]}");
         return families;
       } else {
@@ -59,15 +61,14 @@ class FamiliesWebServices {
   Future<dynamic> getFamilyById(
     String familyId,
   ) async {
-    final uri = Uri.parse(
-        'https://alamalcharity.onrender.com/cases/64cdec0b21c066c1eee767a2');
+    final uri = Uri.parse('${baseUrl}cases/$familyId');
     final response = await http.get(uri);
     if (response.statusCode == 200) {
-      dynamic result = jsonDecode(response.body);
-      log(result);
+      dynamic result = jsonDecode(utf8.decode(response.bodyBytes));
+      log("We got the data successfully from the web service ${result.toString()}");
       return result;
     } else {
-      log('family response : ${response.body}');
+      log('family error is : ${response.body}');
     }
   }
 

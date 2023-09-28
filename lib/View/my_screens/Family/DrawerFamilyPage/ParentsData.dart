@@ -13,6 +13,7 @@ class ParentsData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ProviderFamilyData>(
       builder: (context,_,child) {
+        
         var _husband = _.family!.husband!;
         var _wife =_.family!.wife!;
         return ListView(

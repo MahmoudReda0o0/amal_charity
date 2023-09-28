@@ -73,15 +73,18 @@ class FamilyList extends StatelessWidget {
 
   Widget _buildListItem(int index, BuildContext context, FamilyModel family) {
     return InkWell(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => FamilyPageForm(
-            familyId: family.id ?? "",
-            index: index,
+      onTap: () {
+        print("The id of the family is ${family.id}");
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => FamilyPageForm(
+              familyId: family.id ?? "64cdeb6f21c066c1eee7658c",
+              index: index,
+            ),
           ),
-        ),
-      ),
+        );
+      },
       child: Container(
         height: MediaQuery.of(context).size.height * 0.14,
         clipBehavior: Clip.hardEdge,
