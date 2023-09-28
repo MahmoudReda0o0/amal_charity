@@ -1,3 +1,5 @@
+import 'package:amal_charity/View/zTEST/Test2.dart';
+import 'package:amal_charity/View/zTEST/test.dart';
 import 'package:amal_charity/constants/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,20 +11,8 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ProviderUserProfile>(
-      builder: (context,_,child) {
-        return Scaffold(
-          backgroundColor: PublicColor.one,
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text('${_.name}'),
-              Text('${_.password}'),
-            ],
-          ),
-        );
-      }
-    );
+    return Consumer<ProviderUserProfile>(builder: (context, _, child) {
+      return Scaffold();
+    });
   }
 }

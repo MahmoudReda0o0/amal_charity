@@ -1,4 +1,5 @@
 import 'package:amal_charity/State%20Managment/api/get_all_families/families_cubit.dart';
+import 'package:amal_charity/View/my_screens/PDF/PDFScreen.dart';
 import 'package:amal_charity/constants/my_colors.dart';
 import 'package:amal_charity/data/repositories/families_repo.dart';
 import 'package:amal_charity/data/web_services/families_web_services.dart';
@@ -126,13 +127,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 CusHomeCard(
                                     imageurl:
-                                        'assets/images/homescreen/familyicon.png',
+                                        'assets/images/logo.png',
                                     fun: () {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const UserProfile()));
+                                                  const PDFScreen()));
                                     }),
                                 SizedBox(width: mediaW * 0.1),
                                 CusHomeCard(

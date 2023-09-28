@@ -6,11 +6,13 @@ class ProviderAppData extends ChangeNotifier{
   String familyAppBar ='بيانات الأسرة';
   var pagedata ;
   int drawerIndex=0;
-  String testData= 'محمود رضا';
+  String name= 'محمود رضا';
+  int age =22;
+  String address= 'المنصوره/الدراسات/امام معرض شباب التحرير/خلف النجمه الذهبيه';
 
 
   postData(String updatedData){
-    testData = updatedData ;
+    name = updatedData ;
     notifyListeners();
   }
 

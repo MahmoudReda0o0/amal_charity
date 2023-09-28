@@ -22,6 +22,10 @@ dependencies:
   url_launcher:
   animated_splash_screen:
   go_router:
+  pdf:
+  path_provider:
+  open_file: ^3.3.2
+
 
 dev_dependencies:
   flutter_lints: ^2.0.0

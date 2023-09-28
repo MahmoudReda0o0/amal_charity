@@ -1,0 +1,45 @@
+import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart' as http;
+
+class ApiPutResult{
+  bool? isDone;
+  //bool isCatchError=false;
+  String? message;
+}
+
+class ApiPutByID {
+  static Future<ApiPutResult> UpdateFamilyData () async {
+    ApiPutResult apiPutResult = ApiPutResult();
+    Uri uri = Uri.parse('https://alamalcharity.onrender.com/cases/64cdeb6f21c066c1eee7658c');
+
+    try{
+      final response = await http.put(uri,body: jsonEncode({
+          "Husband": {
+            "name": "محمود رضا ",
+            "age": 5,
+            "enableWork": true,
+            "job": "مطور تطبيقات فلاتر",
+            "education": "جامعي",
+            "teleNumber": "01021804143"},
+      }),headers: {HttpHeaders.contentTypeHeader: 'application/json'},);
+
+      if(response.statusCode == 200){
+        apiPutResult.isDone=true;
+        apiPutResult.message = 'Api Put Done ';
+        print('response body : ${response.body}');
+      }else{
+        apiPutResult.isDone=false;
+        apiPutResult.message='Api Put Fail';
+        print('response Code: ${response.statusCode} & body: ${response.body}');
+      }
+      return apiPutResult;
+    }catch(e){
+      //apiPutResult.isCatchError=true;
+      apiPutResult.message= 'Catch Error :$e';
+      print('catch error :$e');
+      throw Exception('Catch Error : $e');
+      //return apiPutResult;
+    }
+  }
+}

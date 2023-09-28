@@ -1,3 +1,4 @@
+import 'package:amal_charity/State%20Managment/Provider/ApiProvider/update%20Family%20Data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,12 +34,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<ProviderFamilyData>(
-            create: (context) => ProviderFamilyData()),
-        ChangeNotifierProvider<ProviderAppData>(
-            create: (context) => ProviderAppData()),
-        ChangeNotifierProvider<ProviderUserProfile>(
-            create: (context) => ProviderUserProfile()),
+        ChangeNotifierProvider<ProviderFamilyData>(create: (context) => ProviderFamilyData()),
+        ChangeNotifierProvider<ProviderAppData>(create: (context) => ProviderAppData()),
+        ChangeNotifierProvider<ProviderUserProfile>(create: (context) => ProviderUserProfile()),
+        ChangeNotifierProvider<ProviderUpdateFamilyDate>(create: (context)=>ProviderUpdateFamilyDate()),
       ],
       child: MaterialApp(
         // navigatorKey: navigationKey,

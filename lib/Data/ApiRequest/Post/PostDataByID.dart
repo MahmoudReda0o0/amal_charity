@@ -2,7 +2,7 @@ import 'package:http/http.dart'as http;
 
 class ApiPostDataByID {
 
-  Future updateData() async {
+  Future createNewFamily() async {
     final uri = Uri.parse('https://alamalcharity.onrender.com/cases/64cdec0b21c066c1eee767a2');
     try{
       final response = await http.put(uri,headers: {

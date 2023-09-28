@@ -1,6 +1,6 @@
+import 'package:amal_charity/View/zTEST/test%20Put.dart';
 import 'package:amal_charity/constants/my_colors.dart';
 import 'package:amal_charity/data/models/family_detailed.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -94,11 +94,8 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                                   actions: [
                                     TextButton(
                                       onPressed: () {
-                                        cubit.getFamilyById(
-                                            widget.familyId, context);
-                                        print(
-                                            '${Provider.of<ProviderFamilyData>(context, listen: false).family!.husband!.name}');
-                                      },
+                                        Navigator.push(context, MaterialPageRoute(builder: (context)=>TestPutUpdateData()));
+                                        },
                                       child: Container(
                                         child: const Text('Family Api '),
                                       ),
