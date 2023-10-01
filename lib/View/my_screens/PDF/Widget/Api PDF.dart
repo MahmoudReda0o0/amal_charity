@@ -14,7 +14,10 @@ class PdfApi {
     final bytes = await pdf.save();
 
     final dir = await getApplicationDocumentsDirectory();
-    final file = File('${dir.path}/$name');
+    final temp = await getTemporaryDirectory();
+    final file = File('${temp.path}/$name');
+    print('app Directory :$dir');
+    print('temp Directory :$temp');
 
     await file.writeAsBytes(bytes);
 

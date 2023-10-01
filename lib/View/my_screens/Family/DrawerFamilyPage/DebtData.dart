@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../State Managment/Provider/ApiProvider/FamilyData.dart';
 import '../../../../constants/my_colors.dart';
-import '../../Widget/CusContainerData.dart';
+import '../Widget/CusContainerData.dart';
 import '../../Widget/CustomDivider.dart';
 
 class DebtData extends StatelessWidget {

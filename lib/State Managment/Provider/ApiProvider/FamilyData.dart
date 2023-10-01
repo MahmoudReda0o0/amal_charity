@@ -10,7 +10,7 @@ class ProviderFamilyData extends ChangeNotifier {
     dataResult = await dataApi.GetFamilyData();
     if (dataResult.hasError == false) {
       print('provider data done');
-      print('name api: ${dataResult.DataModel!.husband!.name}');
+      //print('name api: ${dataResult.DataModel!.husband!.name}');
     } else {
       print('provider data fail');
     }

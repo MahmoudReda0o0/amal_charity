@@ -37,6 +37,9 @@ flutter:
     - assets/images/
     - assets/images/homescreen/
   fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo/Cairo-Regular.ttf
     - family: Janna
       fonts:
         - asset: assets/fonts/Janna.ttf

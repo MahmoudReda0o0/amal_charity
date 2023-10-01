@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../State Managment/Provider/ApiProvider/FamilyData.dart';
-import '../../Widget/CusContainerData.dart';
+import '../Widget/CusContainerData.dart';
 import '../../Widget/CustomDivider.dart';
 
 class MedicalData extends StatefulWidget {

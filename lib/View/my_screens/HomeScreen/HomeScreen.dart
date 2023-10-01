@@ -25,6 +25,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   CarouselController carouselController = CarouselController();
   var repo = FamiliesRepo(FamiliesWebServices());
+  bool popBool = false;
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -126,8 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 CusHomeCard(
-                                    imageurl:
-                                        'assets/images/logo.png',
+                                    imageurl: 'assets/images/logo.png',
                                     fun: () {
                                       Navigator.push(
                                           context,

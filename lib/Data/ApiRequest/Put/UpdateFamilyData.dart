@@ -1,6 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:amal_charity/State%20Managment/Provider/AppProvider/TextEditingController.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import '../../../State Managment/Provider/ApiProvider/FamilyData.dart';
+import '../../../main.dart';
 
 class ApiPutResult{
   bool? isDone;
@@ -10,13 +14,14 @@ class ApiPutResult{
 
 class ApiPutByID {
   static Future<ApiPutResult> UpdateFamilyData () async {
+    final textController = Provider.of<ProviderTextEditingController>(navigationKey.currentContext!,listen: false);
     ApiPutResult apiPutResult = ApiPutResult();
     Uri uri = Uri.parse('https://alamalcharity.onrender.com/cases/64cdeb6f21c066c1eee7658c');
 
     try{
       final response = await http.put(uri,body: jsonEncode({
           "Husband": {
-            "name": "محمود رضا ",
+            "name": "${textController!.conName.text}",
             "age": 5,
             "enableWork": true,
             "job": "مطور تطبيقات فلاتر",

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import '../models/families_model.dart';
+
 import '../models/family_detailed.dart';
 import '../web_services/families_web_services.dart';
 
@@ -11,7 +12,7 @@ class FamiliesRepo {
   Future<List<FamilyModel>> getFamilies() async {
     final families = await webServices.getFamilies();
 
-    return families.map((fammily) => FamilyModel.fromJson(fammily)).toList();
+    return families.map((family) => FamilyModel.fromJson(family)).toList();
   }
 
   Future<List<FamilyDetailedModel>> getFamiliesInDetails() async {

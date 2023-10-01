@@ -1,8 +1,10 @@
+import 'package:amal_charity/State%20Managment/Provider/AppProvider/TextEditingController.dart';
 import 'package:amal_charity/data/models/families_model.dart';
 import 'package:amal_charity/data/models/family_detailed.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
 import '../../../State Managment/api/get_all_families/families_cubit.dart';
 import '../../Widget/my_bottom_sheet.dart';
 import 'FamilyPageForm.dart';
