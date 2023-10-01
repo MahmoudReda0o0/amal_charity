@@ -22,7 +22,6 @@ class FamiliesCubit extends Cubit<FamiliesState> {
   FamilyDataApi dataApi = FamilyDataApi();
   FamilyDetailedModel? family;
 
-  //This is for you Mahmoud Read
   void getFamilyById(String familyId, BuildContext context) {
     log("lets getFamilyById");
     emit(Loading());

@@ -43,26 +43,26 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
       navigationKey.currentContext!,
       listen: false);
   Future<bool> _onWillPop() async {
-    if (appProvider.adminMode == false)
+    if (appProvider.adminMode == false) {
       return true;
-    else {
+    } else {
       return (await showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: new Text('You are in Admin Mode'),
-              content: new Text('Do you want realy to exit ?'),
+              title: const Text('You are in Admin Mode'),
+              content: const Text('Do you want realy to exit ?'),
               actions: <Widget>[
                 TextButton(
                   onPressed: () =>
                       Navigator.of(context).pop(false), //<-- SEE HERE
-                  child: new Text('No'),
+                  child: const Text('No'),
                 ),
                 TextButton(
                   onPressed: () {
                     appProvider.exitAdminMode();
                     Navigator.of(context).pop(true); // <-- SEE HERE
                   },
-                  child: new Text('Yes'),
+                  child: const Text('Yes'),
                 ),
               ],
             ),
@@ -81,6 +81,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: BlocProvider<FamiliesCubit>(
+        lazy: false,
         create: (context) => FamiliesCubit(
           repo: FamiliesRepo(
             FamiliesWebServices(),
@@ -106,7 +107,7 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
                       showDialog(
                         context: context,
                         builder: (context) {
-                          return AdminAlertDialog();
+                          return const AdminAlertDialog();
                         },
                       );
                     },
