@@ -24,12 +24,13 @@ class FamilyPageForm extends StatefulWidget {
 class _FamilyPageFormState extends State<FamilyPageForm> {
   FamilyDetailedModel? family;
   final appProvider = Provider.of<ProviderAppData>(
-      navigationKey.currentContext!,
-      listen: false,
-      );
+    navigationKey.currentContext!,
+    listen: false,
+  );
 
   @override
   Widget build(BuildContext context) {
+    final cubit = FamiliesCubit.get(context);
     return SafeArea(
       child: Consumer2<ProviderAppData, ProviderTextEditingController>(
           builder: (context, _, __, child) {
@@ -64,51 +65,51 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
             ],
           ),
           body: BlocConsumer<FamiliesCubit, FamiliesState>(
-              listener: (context, state) {},
-              builder: (context, state) {
-                return state is! Loading || state is! Error
-                    ? Directionality(
-                        textDirection: TextDirection.rtl,
-                        child: Stack(
-                          children: [
-                            Container(
-                              height: mediaH * 0.3,
-                              width: mediaW,
-                              color: Colors.green,
-                            ),
-                            SingleChildScrollView(
-                              child: Column(
-                                // mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Container(
-                                    height: mediaH * 0.9,
-                                    width: mediaW,
-                                    padding: const EdgeInsets.only(
-                                      right: 10,
-                                      left: 10,
-                                      bottom: 10,
-                                      top: 11,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: PublicColor.one,
-                                      borderRadius: const BorderRadius.only(
-                                        topRight: Radius.circular(35),
-                                        topLeft: Radius.circular(35),
-                                        bottomRight: Radius.circular(35),
-                                        bottomLeft: Radius.circular(35),
-                                      ),
-                                    ),
-                                    child: const FamilyProfile(),
+            listener: (context, state) {},
+            builder: (context, state) {
+              return cubit.familyDetailedModel != null
+                  ? Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: Stack(
+                        children: [
+                          Container(
+                            height: mediaH * 0.3,
+                            width: mediaW,
+                            color: Colors.green,
+                          ),
+                          SingleChildScrollView(
+                            child: Column(
+                              // mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                  height: mediaH * 0.9,
+                                  width: mediaW,
+                                  padding: const EdgeInsets.only(
+                                    right: 10,
+                                    left: 10,
+                                    bottom: 10,
+                                    top: 11,
                                   ),
-                                ],
-                              ),
+                                  decoration: BoxDecoration(
+                                    color: PublicColor.one,
+                                    borderRadius: const BorderRadius.only(
+                                      topRight: Radius.circular(35),
+                                      topLeft: Radius.circular(35),
+                                      bottomRight: Radius.circular(35),
+                                      bottomLeft: Radius.circular(35),
+                                    ),
+                                  ),
+                                  child: const FamilyProfile(),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      )
-                    : const Center(child: CircularProgressIndicator());
-              },
-              ),
+                          ),
+                        ],
+                      ),
+                    )
+                  : const Center(child: CircularProgressIndicator());
+            },
+          ),
         );
       }),
     );
