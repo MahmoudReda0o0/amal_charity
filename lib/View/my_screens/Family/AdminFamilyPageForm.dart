@@ -27,6 +27,8 @@ import 'Widget/ScrollAdminButton.dart';
 
 // ignore: must_be_immutable
 class AdminPageForm extends StatefulWidget {
+  const AdminPageForm({super.key});
+
   @override
   State<AdminPageForm> createState() => _AdminPageFormState();
 }
@@ -36,7 +38,6 @@ class _AdminPageFormState extends State<AdminPageForm> {
       navigationKey.currentContext!,
       listen: false);
 
-      
   Future<bool> _onWillPop() async {
     if (appProvider.adminMode == false) {
       return true;
@@ -54,7 +55,11 @@ class _AdminPageFormState extends State<AdminPageForm> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>FamilyList())); // <-- SEE HERE
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const FamilyList())); // <-- SEE HERE
                   },
                   child: const Text('Yes'),
                 ),
@@ -74,113 +79,123 @@ class _AdminPageFormState extends State<AdminPageForm> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: _onWillPop,
-      child: SafeArea(
-        child: Consumer<ProviderAppData>(builder: (context, _, child) {
-          return Scaffold(
-            resizeToAvoidBottomInset: false,
-            backgroundColor: PublicColor.one,
-            appBar: AppBar(
-              backgroundColor: Colors.green,
-              bottomOpacity: 0.0,
-              elevation: 0.0,
-              title: Text(
-                _.familyAppBar,
-                style: const TextStyle(fontSize: 25),
-              ),
-              centerTitle: true,
-              leading: drawerSetting(providerAppData: _),
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const AdminAlertDialog();
-                      },
-                    );
-                  },
-                  icon: Icon(
-                    Icons.admin_panel_settings,
-                    color: Colors.yellow,
-                    size: mediaW * 0.1,
-                  ),
-                ),
-              ],
-            ),
-            drawer: Drawer(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    BuildHeader(),
-                    BuildMenuItems(),
-                  ],
-                ),
-              ),
-            ),
-            body: Directionality(
-              textDirection: TextDirection.rtl,
-              child: Stack(
-                children: [
-                  Container(
-                    height: mediaH,
-                    width: mediaW,
-                    color: Colors.green,
-                  ),
-                  Column(
-                    children: [
-                      ScrollAdminButton(),
-                      SizedBox(
-                        height: mediaH * 0.015,
+      child: BlocConsumer<FamiliesCubit, FamiliesState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return SafeArea(
+            child: Consumer<ProviderAppData>(builder: (context, _, child) {
+              return state is! Loading || state is! Error
+                  ? Scaffold(
+                      resizeToAvoidBottomInset: false,
+                      backgroundColor: PublicColor.one,
+                      appBar: AppBar(
+                        backgroundColor: Colors.green,
+                        bottomOpacity: 0.0,
+                        elevation: 0.0,
+                        title: Text(
+                          _.familyAppBar,
+                          style: const TextStyle(fontSize: 25),
+                        ),
+                        centerTitle: true,
+                        leading: drawerSetting(providerAppData: _),
+                        actions: [
+                          IconButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return const AdminAlertDialog();
+                                },
+                              );
+                            },
+                            icon: Icon(
+                              Icons.admin_panel_settings,
+                              color: Colors.yellow,
+                              size: mediaW * 0.1,
+                            ),
+                          ),
+                        ],
                       ),
-                      SingleChildScrollView(
-                        child: Column(
-                          // mainAxisSize: MainAxisSize.min,
+                      drawer: const Drawer(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              BuildHeader(),
+                              BuildMenuItems(),
+                            ],
+                          ),
+                        ),
+                      ),
+                      body: Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: Stack(
                           children: [
                             Container(
-                              height: mediaH * 0.82,
+                              height: mediaH,
                               width: mediaW,
-                              padding: const EdgeInsets.only(
-                                right: 10,
-                                left: 10,
-                                bottom: 10,
-                                top: 11,
-                              ),
-                              decoration: BoxDecoration(
-                                color: PublicColor.one,
-                                borderRadius: const BorderRadius.only(
-                                  topRight: Radius.circular(35),
-                                  topLeft: Radius.circular(35),
-
+                              color: Colors.green,
+                            ),
+                            Column(
+                              children: [
+                                const ScrollAdminButton(),
+                                SizedBox(
+                                  height: mediaH * 0.015,
                                 ),
-                              ),
-                              child: _.scrollIndex == 0
-                                  ? const FamilyProfile()
-                                  : _.scrollIndex == 1
-                                      ? const ParentsData()
-                                      : _.scrollIndex == 2
-                                          ? const ChildrenData()
-                                          : _.scrollIndex == 3
-                                              ? const IncomeExpenses()
-                                              : _.scrollIndex == 4
-                                                  ? const DebtData()
-                                                  : _.scrollIndex == 5
-                                                      ? const HouseData()
-                                                      : _.scrollIndex == 6
-                                                          ? const MedicalData()
-                                                          : _.scrollIndex == 7
-                                                              ? const SchoolData()
-                                                              : const BrideData(),
+                                SingleChildScrollView(
+                                  child: Column(
+                                    // mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        height: mediaH * 0.82,
+                                        width: mediaW,
+                                        padding: const EdgeInsets.only(
+                                          right: 10,
+                                          left: 10,
+                                          bottom: 10,
+                                          top: 11,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: PublicColor.one,
+                                          borderRadius: const BorderRadius.only(
+                                            topRight: Radius.circular(35),
+                                            topLeft: Radius.circular(35),
+                                          ),
+                                        ),
+                                        child: _.scrollIndex == 0
+                                            ? const FamilyProfile()
+                                            : _.scrollIndex == 1
+                                                ? const ParentsData()
+                                                : _.scrollIndex == 2
+                                                    ? const ChildrenData()
+                                                    : _.scrollIndex == 3
+                                                        ? const IncomeExpenses()
+                                                        : _.scrollIndex == 4
+                                                            ? const DebtData()
+                                                            : _.scrollIndex == 5
+                                                                ? const HouseData()
+                                                                : _.scrollIndex ==
+                                                                        6
+                                                                    ? const MedicalData()
+                                                                    : _.scrollIndex ==
+                                                                            7
+                                                                        ? const SchoolData()
+                                                                        : const BrideData(),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+                    )
+                  : const Center(
+                      child: CircularProgressIndicator(),
+                    );
+            }),
           );
-        }),
+        },
       ),
     );
   }
@@ -190,7 +205,7 @@ class _AdminPageFormState extends State<AdminPageForm> {
       builder: (context) {
         return IconButton(
           onPressed: () {
-              Scaffold.of(context).openDrawer();
+            Scaffold.of(context).openDrawer();
           },
           icon: Icon(
             Icons.settings,
