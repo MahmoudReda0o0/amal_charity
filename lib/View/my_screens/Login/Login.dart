@@ -1,9 +1,11 @@
+import 'package:amal_charity/State%20Managment/Provider/AppProvider/ProviderAppData.dart';
 import 'package:amal_charity/constants/constantValues.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../State Managment/Provider/AppProvider/ProviderUserProfile.dart';
 import '../../../constants/my_colors.dart';
 import '../HomeScreen/HomeScreen.dart';
+import '../Widget/CusLaunchUrl.dart';
 import '../Widget/CustomTextInput.dart';
 
 class Login extends StatefulWidget {
@@ -18,10 +20,12 @@ class _LoginState extends State<Login> {
   TextEditingController conPassword = TextEditingController();
   bool showPassword = false;
   bool rememberMe = false;
+  CustomLaunchUrl customLaunchUrl =CustomLaunchUrl();
   @override
   Widget build(BuildContext context) {
     double keyboard = MediaQuery.of(context).viewInsets.bottom;
-    return Consumer<ProviderUserProfile>(builder: (context, _, child) {
+    return Consumer2<ProviderUserProfile, ProviderAppData>(
+        builder: (context, _, __, child) {
       return SafeArea(
         child: GestureDetector(
           onTap: () {
@@ -29,6 +33,20 @@ class _LoginState extends State<Login> {
           },
           child: Scaffold(
             resizeToAvoidBottomInset: false,
+            floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+            floatingActionButton: FloatingActionButton.extended(
+              backgroundColor: Colors.white,
+              splashColor: Colors.red,
+              onPressed: () async {
+                await customLaunchUrl.launch(customLaunchUrl.developerDrive);
+                print('Open Developer Drive');
+              },
+              label: Text(
+                '${__.versionCode}',
+                style: TextStyle(color: Colors.red, fontSize: mediaW * 0.05),
+              ),
+              icon: FlutterLogo(),
+            ),
             body: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -40,7 +58,7 @@ class _LoginState extends State<Login> {
                   Text(
                     'تسجيل الدخول ',
                     style: TextStyle(
-                        color: PublicColor.green, fontSize: mediaW * 0.02),
+                        color: PublicColor.green, fontSize: mediaW * 0.05),
                   ),
                   SizedBox(
                     height: mediaH * 0.024,
@@ -151,6 +169,8 @@ class _LoginState extends State<Login> {
                     height: mediaH * 0.05,
                   ),
                   ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.green),
                     onPressed: () {
                       _.updateProfile(conUserName.text, conPassword.text);
                       ScaffoldMessenger.of(context).showSnackBar(

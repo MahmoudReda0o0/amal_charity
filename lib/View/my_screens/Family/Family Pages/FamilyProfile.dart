@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../Widget/CusContainerData.dart';
+import '../Widget/CusUpdateButton.dart';
 
 class FamilyProfile extends StatelessWidget {
   const FamilyProfile({Key? key}) : super(key: key);
@@ -21,7 +22,9 @@ class FamilyProfile extends StatelessWidget {
             CusContainerData(leading: "اسم الزوجة :", title: "جواهر فوزي"),
             CusContainerData(leading: "الوظيفة : ", title: ' ربه منزل '),
             CusContainerData(leading: "العنوان :", title: " الدراسات امام معرض شباب التحرير خلف حلواني النجمه الذهبيه ش 93 فؤاد بيت امام المطبعه باب جراج ",conHeight: 130,),
-            CusContainerData(leading: 'الابناء : ', title: 'مصطفي / ريم / عبد الغفور')
+            CusContainerData(leading: "رقم التلفون :", title: "01501860525"),
+            CusContainerData(leading: 'الابناء : ', title: 'مصطفي / ريم / عبد الغفور'),
+            CusUpdateButton(),
           ],
         );
       }

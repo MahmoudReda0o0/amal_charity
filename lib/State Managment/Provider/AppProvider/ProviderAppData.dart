@@ -1,49 +1,80 @@
+import 'package:amal_charity/View/my_screens/Family/AdminFamilyPageForm.dart';
+import 'package:amal_charity/View/my_screens/Family/FamilyPageForm.dart';
 import 'package:amal_charity/constants/constantValues.dart';
 import 'package:amal_charity/main.dart';
 import 'package:flutter/material.dart';
 
 class ProviderAppData extends ChangeNotifier {
+
+  /// App VersionCode
+  String versionCode='0.2.6';
+
+  /// Admin Mode Setting
   bool adminMode = false;
+  bool editData=false;
   String adminPassword = '1032001';
   TextEditingController adminPassController = TextEditingController(text: '');
-
+  void settingEditData(){
+    editData =!editData;
+    print(editData);
+    notifyListeners();
+  }
   void activeAdminMode() {
     if (adminPassController.text == adminPassword) {
       adminMode = true;
-      notifyListeners();
-    } else {
-      adminMode = false;
-      ScaffoldMessenger.of(navigationKey.currentContext!).showSnackBar(
-        SnackBar(
-          content: Text('Wrong Password You are not real Admin'),
+      editData=false;
+      print('Open Admin Mode');
+      Navigator.pushReplacement(
+        navigationKey.currentContext!,
+        MaterialPageRoute(
+          builder: (context) => AdminPageForm(),
         ),
       );
       notifyListeners();
+    } else {
+      adminMode = false;
+      editData=false;
+      ScaffoldMessenger.of(navigationKey.currentContext!).showSnackBar(
+        SnackBar(
+          content: Text('Get out You are not real Admin'),
+        ),
+      );
     }
     adminPassController.clear();
-  }
-
-  void exitAdminMode() {
-    adminMode = false;
     notifyListeners();
   }
+  void exitAdminMode() {
+    adminMode = false;
+    editData=false;
+    notifyListeners();
+    print('open family page form');
+    Navigator.pushReplacement(
+      navigationKey.currentContext!,
+      MaterialPageRoute(
+        builder: (context) => FamilyPageForm(familyId: 'familyId', index: 3),
+      ),
+    );
+  }
 
+  /// App Data
   String familyAppBar = 'بيانات الأسرة';
   var pagedata;
-  int drawerIndex = 0;
+  int scrollIndex = 0;
   String name = 'محمود رضا';
   int age = 22;
   String address =
       'المنصوره/الدراسات/امام معرض شباب التحرير/خلف النجمه الذهبيه';
-
-  postData(String updatedData) {
-    name = updatedData;
+  List<String> familyObject=['بيانات الأسرة',  'بيانات الوالدين','بيانات الابناء','بيانات الدخل والخرج','بيانات الديون','بيانات المنزل','بيانات العلاج','بيانات المدارس','بيانات الجهاز'];
+  List<Color>buttonColor=List.generate(9, (index) => Colors.white);
+  changeButtonColor(){
+    buttonColor = List.generate(buttonColor.length, (index) => Colors.white);
+    buttonColor[scrollIndex] =Colors.yellow;
     notifyListeners();
   }
-
-  SelectDrawerItem({required int selectedInsex}) {
-    familyAppBar = PublicData.familyObject[selectedInsex];
-    drawerIndex = selectedInsex;
+  selectScrollButtonIndex({required int selectedInsex}) {
+    familyAppBar = familyObject[selectedInsex];
+    scrollIndex = selectedInsex;
+    changeButtonColor();
     notifyListeners();
   }
 }

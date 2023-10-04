@@ -31,7 +31,7 @@ class FamiliesCubit extends Cubit<FamiliesState> {
         print("The value of the family from the cubit is ${value.toString()}");
         family = value;
         Provider.of<ProviderFamilyData>(context, listen: false).family = family;
-        print("the retrieved husband age is ${family!.husband!.age}");
+        print(" yyyyyyyyyyyyyyyyyy the retrieved husband age is ${family!.husband!.age}");
       },
     ).catchError((error) {
       log("Here is your error ${error.toString()}");

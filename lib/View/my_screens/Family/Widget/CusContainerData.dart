@@ -43,10 +43,10 @@ class CusContainerData extends StatelessWidget {
                 Center(
                   child: ListTile(
                     trailing: Visibility(
-                      visible: _.adminMode,
+                      visible: _.editData,
                       child: Icon(Icons.settings),
                     ),
-                    title: _.adminMode?TextField(controller: __.conName):Text(
+                    title: _.editData?TextField(controller: __.conName):Text(
                       title,
                       style: const TextStyle(fontSize: 18),
                       overflow: TextOverflow.clip,
@@ -57,7 +57,7 @@ class CusContainerData extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     onTap: () {
-                      fun!();
+                      fun!()??(){};
                       print('normal press');
                     },
                     onLongPress: () {

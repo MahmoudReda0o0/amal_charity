@@ -12,7 +12,7 @@ class CusUpdateButton extends StatelessWidget {
     return Consumer2<ProviderAppData,ProviderUpdateFamilyDate>(
       builder: (context,_,__,child) {
         return Visibility(
-          visible: _.adminMode,
+          visible: _.editData,
           child: Padding(
             padding: const EdgeInsets.only(top: 8),
             child: ElevatedButton(

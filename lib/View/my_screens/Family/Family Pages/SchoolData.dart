@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../../State Managment/Provider/ApiProvider/FamilyData.dart';
 import '../Widget/CusContainerData.dart';
 import '../../Widget/CustomDivider.dart';
+import '../Widget/CusUpdateButton.dart';
 
 
 class SchoolData extends StatefulWidget {
@@ -50,6 +51,7 @@ class _SchoolDataState extends State<SchoolData> {
             CustomDevider().fullDivider(),
             Center(child: Text('شنط المدرسه',style: TextStyle(color: PublicColor.green,fontSize: 20),),),
             CusContainerData(leading: 'عدد الشنط', title: '${_school.bagNumber}'),
+            CusUpdateButton(),
           ],
         );
       }

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../../State Managment/Provider/ApiProvider/FamilyData.dart';
 import '../Widget/CusContainerData.dart';
 import '../../Widget/CustomDivider.dart';
+import '../Widget/CusUpdateButton.dart';
 
 class IncomeExpenses extends StatelessWidget {
   const IncomeExpenses({Key? key}) : super(key: key);
@@ -107,6 +108,7 @@ class IncomeExpenses extends StatelessWidget {
                         extraDetail: 'تفاصيل :  ${_income.other![0].info}',
                         extraBool: true,
                       ),
+                      CusUpdateButton(),
                     ],
                   ),
                 ),
@@ -166,6 +168,7 @@ class IncomeExpenses extends StatelessWidget {
                     ],
                   ),
                 ),
+                CusUpdateButton(),
               ],
             ),
           ),

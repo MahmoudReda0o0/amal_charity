@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         // navigatorKey: navigationKey,
         navigatorKey: navigationKey,
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Janna'),
+        theme: ThemeData(fontFamily: 'Janna'),
         home: Directionality(
           textDirection: TextDirection.rtl,
           child: OpeningSplash(),

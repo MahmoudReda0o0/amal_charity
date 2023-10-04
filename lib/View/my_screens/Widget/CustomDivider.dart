@@ -13,7 +13,7 @@ class CustomDevider {
 
   Widget fullDivider() {
     return const Divider(
-      color: Colors.black,
+      color: Colors.black38,
       height: 30,
       thickness: 3,
       endIndent: 10,

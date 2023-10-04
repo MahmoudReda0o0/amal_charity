@@ -12,16 +12,10 @@ import '../../../constants/constantValues.dart';
 import '../../../data/repositories/families_repo.dart';
 import '../../../data/web_services/families_web_services.dart';
 import '../../Widget/buildHeader.dart';
-import 'DrawerFamilyPage/BrideData.dart';
-import 'DrawerFamilyPage/ChildrenData.dart';
-import 'DrawerFamilyPage/DebtData.dart';
-import 'DrawerFamilyPage/FamilyProfile.dart';
-import 'DrawerFamilyPage/HouseData.dart';
-import 'DrawerFamilyPage/Income&Expenses.dart';
-import 'DrawerFamilyPage/MedicalData.dart';
 import '../../Widget/buildMenuItem.dart';
-import 'DrawerFamilyPage/ParentsData.dart';
-import 'DrawerFamilyPage/SchoolData.dart';
+import 'Family Pages/ChildrenData.dart';
+import 'Family Pages/FamilyProfile.dart';
+import 'Widget/ScrollAdminButton.dart';
 
 // ignore: must_be_immutable
 class FamilyPageForm extends StatefulWidget {
@@ -42,34 +36,6 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
   final appProvider = Provider.of<ProviderAppData>(
       navigationKey.currentContext!,
       listen: false);
-  Future<bool> _onWillPop() async {
-    if (appProvider.adminMode == false) {
-      return true;
-    } else {
-      return (await showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: const Text('You are in Admin Mode'),
-              content: const Text('Do you want realy to exit ?'),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () =>
-                      Navigator.of(context).pop(false), //<-- SEE HERE
-                  child: const Text('No'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    appProvider.exitAdminMode();
-                    Navigator.of(context).pop(true); // <-- SEE HERE
-                  },
-                  child: const Text('Yes'),
-                ),
-              ],
-            ),
-          )) ??
-          false;
-    }
-  }
 
   // @override
   // void initState(){
@@ -78,118 +44,117 @@ class _FamilyPageFormState extends State<FamilyPageForm> {
   // }
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: _onWillPop,
-      child: BlocProvider<FamiliesCubit>(
-        lazy: false,
-        create: (context) => FamiliesCubit(
-          repo: FamiliesRepo(
-            FamiliesWebServices(),
-          ),
-        )..getFamilyById(widget.familyId, context),
-        child: SafeArea(
-          child: Consumer2<ProviderAppData, ProviderTextEditingController>(
-              builder: (context, _, __, child) {
-            return Scaffold(
-              backgroundColor: PublicColor.one,
-              appBar: AppBar(
-                backgroundColor: Colors.green,
-                bottomOpacity: 0.0,
-                elevation: 0.0,
-                title: Text(
-                  _.familyAppBar,
-                  style: const TextStyle(fontSize: 25),
+    return BlocProvider<FamiliesCubit>(
+      lazy: false,
+      create: (context) => FamiliesCubit(
+        repo: FamiliesRepo(
+          FamiliesWebServices(),
+        ),
+      )..getFamilyById(widget.familyId, context),
+      child: SafeArea(
+        child: Consumer2<ProviderAppData, ProviderTextEditingController>(
+            builder: (context, _, __, child) {
+          return Scaffold(
+            backgroundColor: PublicColor.one,
+            appBar: AppBar(
+              backgroundColor: Colors.green,
+              bottomOpacity: 0.0,
+              elevation: 0.0,
+
+              title: Text(
+                "بيانات الأسرة",
+                style: const TextStyle(fontSize: 25),
+              ),
+              centerTitle: true,
+              leading:familyNote(providerAppData: _ ) ,
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const AdminAlertDialog();
+                      },
+                    );
+                  },
+                  icon: Icon(
+                    Icons.admin_panel_settings,
+                    color:  Colors.white,
+                    size:  mediaW*0.08,
+                  ),
                 ),
-                centerTitle: true,
-                actions: [
-                  IconButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return const AdminAlertDialog();
-                        },
-                      );
-                    },
-                    icon: Icon(
-                      Icons.edit,
-                      color: _.adminMode ? Colors.yellow : Colors.white,
-                      size: _.adminMode ? 35 : 25,
+              ],
+            ),
+            body: Directionality(
+              textDirection: TextDirection.rtl,
+              child: Stack(
+                children: [
+                  Container(
+                    height: mediaH * 0.3,
+                    width: mediaW,
+                    color: Colors.green,
+                  ),
+                  SingleChildScrollView(
+                    child: Column(
+                     // mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          height: mediaH * 0.9,
+                          width: mediaW,
+                          padding: const EdgeInsets.only(
+                            right: 10,
+                            left: 10,
+                            bottom: 10,
+                            top: 11,
+                          ),
+                          decoration: BoxDecoration(
+                            color: PublicColor.one,
+                            borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(35),
+                              topLeft: Radius.circular(35),
+                              bottomRight: Radius.circular(35),
+                              bottomLeft: Radius.circular(35),
+                            ),
+                          ),
+                          child: FamilyProfile(),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
-              drawer: const Drawer(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      BuildHeader(),
-                      BuildMenuItems(),
-                    ],
-                  ),
-                ),
-              ),
-              body: Directionality(
-                textDirection: TextDirection.rtl,
-                child: Stack(
-                  children: [
-                    Container(
-                      height: mediaH * 0.3,
-                      width: mediaW,
-                      color: Colors.green,
-                    ),
-                    SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SizedBox(
-                            height: mediaH * 0.03,
-                            width: mediaW,
-                          ),
-                          Container(
-                            width: mediaW,
-                            height: mediaH * 0.85,
-                            padding: const EdgeInsets.only(
-                              right: 10,
-                              left: 10,
-                              bottom: 10,
-                              top: 11,
-                            ),
-                            decoration: BoxDecoration(
-                              color: PublicColor.one,
-                              borderRadius: const BorderRadius.only(
-                                topRight: Radius.circular(35),
-                                topLeft: Radius.circular(35),
-                              ),
-                            ),
-                            child: _.drawerIndex == 0
-                                ? const FamilyProfile()
-                                : _.drawerIndex == 1
-                                    ? const ParentsData()
-                                    : _.drawerIndex == 2
-                                        ? const ChildrenData()
-                                        : _.drawerIndex == 3
-                                            ? const IncomeExpenses()
-                                            : _.drawerIndex == 4
-                                                ? const DebtData()
-                                                : _.drawerIndex == 5
-                                                    ? const HouseData()
-                                                    : _.drawerIndex == 6
-                                                        ? const MedicalData()
-                                                        : _.drawerIndex == 7
-                                                            ? const SchoolData()
-                                                            : const BrideData(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          }),
-        ),
+            ),
+          );
+        }),
       ),
+    );
+  }
+  Widget familyNote({required ProviderAppData providerAppData}){
+    return Builder(builder: (context) {
+      return IconButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                content: Text('Write family note'),
+                actions: [
+                  TextButton(onPressed: (){}, child: Text('Cancel',style: TextStyle(color: Colors.red,fontSize: mediaW*0.05),),),
+                  TextButton(onPressed: (){}, child: Text('Send',style: TextStyle(color:Colors.green ,fontSize: mediaW*0.05),),),
+                ],
+              );
+            },
+          );
+        },
+        icon: Icon(
+          Icons.edit,
+          size: mediaW * 0.08,
+          color:  Colors.white,
+        ),
+        tooltip:
+        MaterialLocalizations.of(context).openAppDrawerTooltip,
+      );
+    },
     );
   }
 }

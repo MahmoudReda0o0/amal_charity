@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../State Managment/Provider/ApiProvider/FamilyData.dart';
 import '../Widget/CusContainerData.dart';
+import '../Widget/CusUpdateButton.dart';
 
 
 
@@ -23,6 +24,7 @@ class BrideData extends StatelessWidget {
             CusContainerData(leading: 'بوتجاز : ', title: '${_bride.brideDevices!.cooker}'),
             CusContainerData(leading: 'غشاله : ', title: '${_bride.brideDevices!.washingMachine}'),
             CusContainerData(leading: 'مطبخ : ', title: '${_bride.brideDevices!.kitchen}'),
+            CusUpdateButton(),
           ],
         );
       }

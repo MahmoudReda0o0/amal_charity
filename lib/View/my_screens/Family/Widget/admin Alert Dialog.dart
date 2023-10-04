@@ -14,9 +14,9 @@ class AdminAlertDialog extends StatelessWidget {
     return Consumer2<ProviderAppData,ProviderTextEditingController>(
       builder: (context,_,__,child) {
         return AlertDialog(
-          title: const Text(
+          title:  Text(
             "Enter Password to Active Admin Mode",
-            style: TextStyle(fontSize: 27),
+            style: TextStyle(fontSize: mediaW*0.07),
             textAlign: TextAlign.center,
           ),
           content: TextField(
@@ -30,9 +30,9 @@ class AdminAlertDialog extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () {
+                Navigator.pop(context);
                 _.exitAdminMode();
                 print('${_.adminMode}');
-                Navigator.pop(context);
               },
               child: Container(
                 child: const Text(
@@ -43,10 +43,11 @@ class AdminAlertDialog extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
+                Navigator.pop(context);
                 _.activeAdminMode();
                __.setTextController();
                 print('${_.adminMode}');
-                Navigator.pop(context);
+
               },
               child: Container(
                 child: const Text(

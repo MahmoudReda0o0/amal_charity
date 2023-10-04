@@ -17,7 +17,7 @@ class CusListTileNav extends StatelessWidget {
       builder: (context,_,child) {
         return ListTile(
           onTap: (){
-            _.SelectDrawerItem(selectedInsex: itemIndex);
+            _.selectScrollButtonIndex(selectedInsex: itemIndex);
            Navigator.pop(context);
           },
           title: Text('$title'),

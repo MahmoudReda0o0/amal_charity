@@ -49,7 +49,6 @@ class _CusUpdateDataDialogState extends State<CusUpdateDataDialog> {
             TextButton(
               onPressed: () {
                 print('new conData :=> ${conData.text}');
-                _.postData(conData.text);
                 Navigator.pop(context);
               },
               child: Text(

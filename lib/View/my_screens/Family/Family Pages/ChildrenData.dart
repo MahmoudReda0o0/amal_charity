@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../State Managment/Provider/ApiProvider/FamilyData.dart';
 import '../Widget/CusContainerData.dart';
+import '../Widget/CusUpdateButton.dart';
 
 class ChildrenData extends StatefulWidget {
   const ChildrenData({Key? key}) : super(key: key);
@@ -70,6 +71,7 @@ class _ChildrenDataState extends State<ChildrenData> {
                 },
               ),
             ),
+            CusUpdateButton(),
           ],
         );
       }

@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   CarouselController carouselController = CarouselController();
   var repo = FamiliesRepo(FamiliesWebServices());
   bool popBool = false;
-
+  CustomLaunchUrl customLaunchUrl =CustomLaunchUrl();
 
   @override
   Widget build(BuildContext context) {
@@ -39,120 +39,112 @@ class _HomeScreenState extends State<HomeScreen> {
               width: mediaW,
               color: Colors.green,
             ),
-            SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    height: mediaH * 0.13,
-                    width: mediaW,
-                    //color: Colors.amber,
-                    child: Center(
-                      child: Text(
-                        'الصفحة الرئيسية ',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: mediaW * 0.07,
-                        ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: mediaH * 0.13,
+                  width: mediaW,
+                  //color: Colors.amber,
+                  child: Center(
+                    child: Text(
+                      'الصفحة الرئيسية ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: mediaW * 0.07,
                       ),
                     ),
                   ),
-                  Container(
-                    height: mediaH * 0.83,
-                    width: mediaW,
-                    decoration: BoxDecoration(
-                      color: PublicColor.one,
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          topRight: Radius.circular(40)),
-                    ),
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 16),
-                        child: Column(
-                          //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: mediaH * 0.02,
-                            ),
-                            GestureDetector(
-                              onTap: () {
+                ),
+                Container(
+                  height: mediaH * 0.83,
+                  width: mediaW,
+                  decoration: BoxDecoration(
+                    color: PublicColor.one,
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(40),
+                        topRight: Radius.circular(40)),
+                  ),
+                  child: Column(
+                    //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: mediaH * 0.02,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ShowAllWords()));
+                        },
+                        child: Container(
+                          width: mediaW * 0.9,
+                          height: mediaH * 0.27,
+                          padding: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(40)),
+                          child: CusCarouselSlider(),
+                        ),
+                      ),
+                      SizedBox(height: mediaH * 0.02),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CusHomeCard(
+                            imageurl:
+                                'assets/images/homescreen/familyicon.png',
+                            fun: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => BlocProvider(
+                                    create: (context) =>
+                                        FamiliesCubit(repo: repo),
+                                    child: const FamilyList(),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                          SizedBox(width: mediaW * 0.1),
+                          CusHomeCard(
+                              imageurl:
+                                  'assets/images/homescreen/bookicon.png',
+                              fun: () {
+                                customLaunchUrl.launch(customLaunchUrl.charityDrive);
+                              }),
+                        ],
+                      ),
+                      SizedBox(height: mediaH * 0.02),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CusHomeCard(
+                              imageurl: 'assets/images/logo.png',
+                              fun: () {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const ShowAllWords()));
-                              },
-                              child: Container(
-                                width: mediaW * 0.9,
-                                height: mediaH * 0.27,
-                                padding: const EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(40)),
-                                child: CusCarouselSlider(),
-                              ),
-                            ),
-                            SizedBox(height: mediaH * 0.02),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CusHomeCard(
-                                  imageurl:
-                                      'assets/images/homescreen/familyicon.png',
-                                  fun: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => BlocProvider(
-                                          create: (context) =>
-                                              FamiliesCubit(repo: repo),
-                                          child: const FamilyList(),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                                SizedBox(width: mediaW * 0.1),
-                                CusHomeCard(
-                                    imageurl:
-                                        'assets/images/homescreen/bookicon.png',
-                                    fun: () {
-                                      CustomLaunchUrl().Launch();
-                                    }),
-                              ],
-                            ),
-                            SizedBox(height: mediaH * 0.02),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CusHomeCard(
-                                    imageurl: 'assets/images/logo.png',
-                                    fun: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const PDFScreen()));
-                                    }),
-                                SizedBox(width: mediaW * 0.1),
-                                CusHomeCard(
-                                    imageurl:
-                                        'assets/images/homescreen/familyicon.png',
-                                    fun: () {
-                                      print('open family screen');
-                                    }),
-                              ],
-                            ),
-                          ],
-                        ),
+                                            const PDFScreen()));
+                              }),
+                          SizedBox(width: mediaW * 0.1),
+                          CusHomeCard(
+                              imageurl:
+                                  'assets/images/homescreen/familyicon.png',
+                              fun: () {
+                                print('open family screen');
+                              }),
+                        ],
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),
@@ -175,6 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       options: CarouselOptions(
         viewportFraction: 1,
+        reverse: true,
         autoPlay: true,
         enlargeCenterPage: true,
         autoPlayInterval: const Duration(seconds: 8),

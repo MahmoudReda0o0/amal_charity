@@ -18,7 +18,7 @@ class _BuildHeaderState extends State<BuildHeader> {
       return Container(
         padding: const EdgeInsets.all(10),
         child: Center(
-          child: Text('${_.familyAppBar} : ${_.drawerIndex}'),
+          child: Text('إعدادات الأدمن : ${_.scrollIndex}'),
         ),
       );
     });

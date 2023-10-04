@@ -1,3 +1,4 @@
+import 'package:amal_charity/constants/constantValues.dart';
 import 'package:flutter/material.dart';
 
 class CusHomeCard extends StatelessWidget {
@@ -11,8 +12,8 @@ class CusHomeCard extends StatelessWidget {
         fun();
       },
       child: Container(
-        height: 100,
-        width: 100,
+        height: mediaH*0.17,
+        width: mediaW*0.34,
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             color: Colors.white,

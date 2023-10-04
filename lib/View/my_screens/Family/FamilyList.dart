@@ -75,8 +75,9 @@ class FamilyList extends StatelessWidget {
 
   Widget _buildListItem(int index, BuildContext context, FamilyModel family) {
     return InkWell(
-      onTap: () {
+      onTap: () async {
         print("The id of the family is ${family.id}");
+        await
         Navigator.push(
           context,
           MaterialPageRoute(

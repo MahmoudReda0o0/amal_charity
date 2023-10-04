@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../../State Managment/Provider/ApiProvider/FamilyData.dart';
 import '../Widget/CusContainerData.dart';
 import '../../Widget/CustomDivider.dart';
+import '../Widget/CusUpdateButton.dart';
 
 class HouseData extends StatefulWidget {
   const HouseData({Key? key}) : super(key: key);
@@ -45,6 +46,7 @@ class _HouseDataState extends State<HouseData> {
           CusContainerData(
               leading: 'العدد اللي خارج : ',
               title: " ${house.blankets!.familyTake!} "),
+          CusUpdateButton(),
         ],
       );
     });

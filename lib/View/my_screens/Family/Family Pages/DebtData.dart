@@ -6,6 +6,7 @@ import '../../../../State Managment/Provider/ApiProvider/FamilyData.dart';
 import '../../../../constants/my_colors.dart';
 import '../Widget/CusContainerData.dart';
 import '../../Widget/CustomDivider.dart';
+import '../Widget/CusUpdateButton.dart';
 
 class DebtData extends StatelessWidget {
   const DebtData({Key? key}) : super(key: key);
@@ -94,6 +95,7 @@ class DebtData extends StatelessWidget {
               ],
             ),
           ),
+          CusUpdateButton(),
         ],
       );
     });

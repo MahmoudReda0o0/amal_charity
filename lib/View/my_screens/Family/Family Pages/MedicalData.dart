@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../../../../State Managment/Provider/ApiProvider/FamilyData.dart';
 import '../Widget/CusContainerData.dart';
 import '../../Widget/CustomDivider.dart';
+import '../Widget/CusUpdateButton.dart';
 
 class MedicalData extends StatefulWidget {
   const MedicalData({Key? key}) : super(key: key);
@@ -34,6 +35,7 @@ class _MedicalDataState extends State<MedicalData> {
             CustomListGenerate('علاج الاب',0,_medicine),
             CustomListGenerate('علاج الام',1,_medicine),
             CustomListGenerate('علاج الابناء',2,_medicine),
+            CusUpdateButton(),
           ],
         );
       }
