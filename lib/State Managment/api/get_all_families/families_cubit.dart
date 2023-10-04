@@ -20,20 +20,17 @@ class FamiliesCubit extends Cubit<FamiliesState> {
 
   FamilyDataResult dataResult = FamilyDataResult();
   FamilyDataApi dataApi = FamilyDataApi();
-  FamilyDetailedModel? family;
 
   void getFamilyById(String familyId, BuildContext context) {
     log("lets getFamilyById");
     emit(Loading());
-    repo.getFamiliyById(familyId).then(
-      (FamilyDetailedModel value) {
-        emit(GetFamilyByIdSuccessState());
-        print("The value of the family from the cubit is ${value.toString()}");
-        family = value;
-        Provider.of<ProviderFamilyData>(context, listen: false).family = family;
-        print(" yyyyyyyyyyyyyyyyyy the retrieved husband age is ${family!.husband!.age}");
-      },
-    ).catchError((error) {
+    repo.getFamiliyById(familyId).then((FamilyDetailedModel value) {
+      emit(GetFamilyByIdSuccessState());
+      print("The value of the family from the cubit is ${value.toString()}");
+      Provider.of<ProviderFamilyData>(context, listen: false).family = value;
+      print(" yyyyyyyyyyyyyyyyyy the retrieved husband age is ${value.husband!.age}");
+          
+    }).catchError((error) {
       log("Here is your error ${error.toString()}");
       emit(Error(error: error.toString()));
     });

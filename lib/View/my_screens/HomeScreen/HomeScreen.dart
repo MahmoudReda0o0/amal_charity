@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   CarouselController carouselController = CarouselController();
   var repo = FamiliesRepo(FamiliesWebServices());
   bool popBool = false;
-  CustomLaunchUrl customLaunchUrl =CustomLaunchUrl();
+  CustomLaunchUrl customLaunchUrl = CustomLaunchUrl();
 
   @override
   Widget build(BuildContext context) {
@@ -77,8 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ShowAllWords()));
+                                  builder: (context) => const ShowAllWords()));
                         },
                         child: Container(
                           width: mediaW * 0.9,
@@ -95,27 +94,21 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CusHomeCard(
-                            imageurl:
-                                'assets/images/homescreen/familyicon.png',
+                            imageurl: 'assets/images/homescreen/familyicon.png',
                             fun: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => BlocProvider(
-                                    create: (context) =>
-                                        FamiliesCubit(repo: repo),
-                                    child: const FamilyList(),
-                                  ),
-                                ),
+                                    builder: (context) => const FamilyList()),
                               );
                             },
                           ),
                           SizedBox(width: mediaW * 0.1),
                           CusHomeCard(
-                              imageurl:
-                                  'assets/images/homescreen/bookicon.png',
+                              imageurl: 'assets/images/homescreen/bookicon.png',
                               fun: () {
-                                customLaunchUrl.launch(customLaunchUrl.charityDrive);
+                                customLaunchUrl
+                                    .launch(customLaunchUrl.charityDrive);
                               }),
                         ],
                       ),

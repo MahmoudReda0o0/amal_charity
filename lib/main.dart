@@ -1,5 +1,6 @@
 import 'package:amal_charity/State%20Managment/Provider/ApiProvider/update%20Family%20Data.dart';
 import 'package:amal_charity/State%20Managment/Provider/AppProvider/TextEditingController.dart';
+import 'package:amal_charity/data/web_services/families_web_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,8 +8,11 @@ import 'package:provider/provider.dart';
 import 'State Managment/Provider/ApiProvider/FamilyData.dart';
 import 'State Managment/Provider/AppProvider/ProviderAppData.dart';
 import 'State Managment/Provider/AppProvider/ProviderUserProfile.dart';
+import 'State Managment/api/get_all_families/families_cubit.dart';
+import 'View/my_screens/Family/FamilyList.dart';
 import 'View/my_screens/SplashScreen/OpeningSplash.dart';
 import 'State Managment/api/bloc_observer.dart';
+import 'package:amal_charity/data/repositories/families_repo.dart';
 
 GlobalKey<NavigatorState> _navigationKey = GlobalKey<NavigatorState>();
 GlobalKey<NavigatorState> get navigationKey => _navigationKey;
@@ -35,11 +39,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<ProviderFamilyData>(create: (context) => ProviderFamilyData()),
-        ChangeNotifierProvider<ProviderAppData>(create: (context) => ProviderAppData()),
-        ChangeNotifierProvider<ProviderUserProfile>(create: (context) => ProviderUserProfile()),
-        ChangeNotifierProvider<ProviderUpdateFamilyDate>(create: (context)=>ProviderUpdateFamilyDate()),
-        ChangeNotifierProvider<ProviderTextEditingController>(create: (context)=>ProviderTextEditingController()),
+        BlocProvider(
+          lazy: false,
+          create: (context) => FamiliesCubit(
+            repo: FamiliesRepo(FamiliesWebServices())..getFamilies(),
+          ),
+        ),
+        ChangeNotifierProvider<ProviderFamilyData>(
+            create: (context) => ProviderFamilyData()),
+        ChangeNotifierProvider<ProviderAppData>(
+            create: (context) => ProviderAppData()),
+        ChangeNotifierProvider<ProviderUserProfile>(
+            create: (context) => ProviderUserProfile()),
+        ChangeNotifierProvider<ProviderUpdateFamilyDate>(
+            create: (context) => ProviderUpdateFamilyDate()),
+        ChangeNotifierProvider<ProviderTextEditingController>(
+            create: (context) => ProviderTextEditingController()),
       ],
       child: MaterialApp(
         // navigatorKey: navigationKey,
