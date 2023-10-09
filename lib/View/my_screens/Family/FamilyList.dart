@@ -32,7 +32,7 @@ class FamilyList extends StatelessWidget {
       body: BlocConsumer<FamiliesCubit, FamiliesState>(
         listener: (context, state) {},
         builder: (context, state) {
-          return state is! Loading || state is! Error
+          return cubit.families.isNotEmpty
               ? ListView.separated(
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
@@ -46,7 +46,7 @@ class FamilyList extends StatelessWidget {
                     );
                   },
                   itemCount: cubit.families.length,
-                  separatorBuilder: (context, index) => Container(),
+                  separatorBuilder: (context, index,) => Container(),
                 )
               : const Center(
                   child: CircularProgressIndicator(),

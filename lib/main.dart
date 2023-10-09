@@ -42,19 +42,21 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           lazy: false,
           create: (context) => FamiliesCubit(
-            repo: FamiliesRepo(FamiliesWebServices())..getFamilies(),
+            repo: FamiliesRepo(
+              FamiliesWebServices(),
+            )..getFamilies(),
           ),
         ),
         ChangeNotifierProvider<ProviderFamilyData>(
-            create: (context) => ProviderFamilyData()),
+            create: (context) => ProviderFamilyData(),),
         ChangeNotifierProvider<ProviderAppData>(
-            create: (context) => ProviderAppData()),
+            create: (context) => ProviderAppData(),),
         ChangeNotifierProvider<ProviderUserProfile>(
-            create: (context) => ProviderUserProfile()),
+            create: (context) => ProviderUserProfile(),),
         ChangeNotifierProvider<ProviderUpdateFamilyDate>(
-            create: (context) => ProviderUpdateFamilyDate()),
+            create: (context) => ProviderUpdateFamilyDate(),),
         ChangeNotifierProvider<ProviderTextEditingController>(
-            create: (context) => ProviderTextEditingController()),
+            create: (context) => ProviderTextEditingController(),),
       ],
       child: MaterialApp(
         // navigatorKey: navigationKey,
